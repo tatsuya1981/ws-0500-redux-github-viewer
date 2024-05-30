@@ -1,33 +1,51 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { openMenu } from "../../redux/drawerSlice";
 
 export const MenuDrawer = () => {
-  const[open, setOpen] = useState(false);
+  const open = useSelector((state) => state.drawer.isStateOpen)
+  const dispatch = useDispatch();
 
-  const onClickDrawer = () => {
-    setOpen(!open);
+const onClickDrawer = () => {
+  dispatch(openMenu());
 }
 
-  return(
-    
-    <Nav>
-      <HeaderMenu>
-      <SBurgerIcon onClick={onClickDrawer}>
-        <SBurgerLine open={open} transform="translateY(9px) rotate(45deg)" />
-        <SBurgerLine open={open} opacity={0} />
-        <SBurgerLine open={open} transform="translateY(-9px) rotate(-45deg)" />
-      </SBurgerIcon>
-      </HeaderMenu>
-      <SBurgerWrapper open={open}>
-        <SBurgerMenu open={open}>
-          <SBurgerList><Link to="/">Top</Link></SBurgerList>
-          <SBurgerList><Link to="/profile">Your Profile</Link></SBurgerList>
-          <SBurgerList><Link to="/issue">Issue</Link></SBurgerList>
-          <SBurgerList><Link to="/pullRequest">Pull Request</Link></SBurgerList>
-        </SBurgerMenu>
-      </SBurgerWrapper>
-    </Nav>
+  return (
+    <>
+      <SMenuOverlay open={open} onClick={() => dispatch(openMenu())} />
+      <Nav>
+        <HeaderMenu>
+          <SBurgerIcon onClick={onClickDrawer}>
+            <SBurgerLine
+              open={open}
+              transform="translateY(9px) rotate(45deg)"
+            />
+            <SBurgerLine open={open} opacity={0} />
+            <SBurgerLine
+              open={open}
+              transform="translateY(-9px) rotate(-45deg)"
+            />
+          </SBurgerIcon>
+        </HeaderMenu>
+        <SBurgerWrapper open={open}>
+          <SBurgerMenu open={open}>
+            <SBurgerList>
+              <Link to="/">Top</Link>
+            </SBurgerList>
+            <SBurgerList>
+              <Link to="/profile">Your Profile</Link>
+            </SBurgerList>
+            <SBurgerList>
+              <Link to="/issue">Issue</Link>
+            </SBurgerList>
+            <SBurgerList>
+              <Link to="/pullRequest">Pull Request</Link>
+            </SBurgerList>
+          </SBurgerMenu>
+        </SBurgerWrapper>
+      </Nav>
+    </>
   );
 };
 
@@ -59,37 +77,50 @@ const SBurgerLine = styled.div`
   display: block;
   margin: 6px auto;
   transition: all 0.3s ease-in-out;
-  transform: ${props => props.open? props.transform : "none"}
-  opacity: ${props => props.open && props.opacity === 0 ? 0 : 1}
+  transform: ${(props) => (props.open ? props.transform : "none")}
+  opacity: ${(props) => (props.open && props.opacity === 0 ? 0 : 1)}
 `;
 
 const SBurgerWrapper = styled.div`
-position: absolute;
-top: 64px;
-right: 16px;
-width: 200px;
-border-radius: 2px;
-padding: 8px 0px;
-background-color: #fff;
-display: ${props => props.open? "block" : "none"};
-box-shadow: rgba(51, 51, 51, 0.15) 1px 1px 4px 1px
-`
+  position: absolute;
+  top: 64px;
+  right: 16px;
+  width: 200px;
+  border-radius: 2px;
+  padding: 8px 0px;
+  background-color: #fff;
+  display: ${(props) => (props.open ? "block" : "none")};
+  box-shadow: rgba(51, 51, 51, 0.15) 1px 1px 4px 1px;
+`;
 
 const SBurgerMenu = styled.ul`
-background-color: white;
-display: ${props => props.open? "block" : "none"};
-list-style-type: none;
-padding: 0;
-margin: 0px;
+  background-color: white;
+  display: ${(props) => (props.open ? "block" : "none")};
+  list-style-type: none;
+  padding: 0;
+  margin: 0px;
+  position: relative;
+  z-index: 11;
 `;
 
 const SBurgerList = styled.li`
-padding: 8px 12px;
-color: black;
-text-decoration: none;
-a{
-  color: inherit;
+  padding: 8px 12px;
+  color: black;
   text-decoration: none;
-  display: block;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+`;
+
+const SMenuOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  display: ${(props) => (props.open ? "block" : "none")};
+  z-index: 10;
 `;

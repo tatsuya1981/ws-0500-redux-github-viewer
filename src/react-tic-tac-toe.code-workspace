@@ -1,0 +1,21 @@
+{
+  "folders": [
+	{
+		"name": "react-tic-tac-toe",
+		"path": "../../react-tic-tac-toe"
+	},
+	{
+		"path": "../../../projects_JS/ws-0300-js-tic-tac-toe"
+	},
+	{
+		"path": "../../react-training"
+	},
+	{
+		"path": "../../redux-counter-app-tutorial"
+	},
+	{
+		"path": ".."
+	}
+],
+  "settings": {}
+}
