@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -17,7 +16,6 @@ display: flex;
 width: 100%;
 padding: 0px 32px
 margin: 0px;
-cursor: pointer;
 `;
 
 const SHeaderLists = styled.li`

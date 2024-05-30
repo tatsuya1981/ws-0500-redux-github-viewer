@@ -1,4 +1,5 @@
 import './App.css';
+import { HeaderTag } from './components/molecules/HeaderTag';
 import { Header } from './components/organisms/layout/Header';
 import { SearchArea } from './components/organisms/search/SearchArea';
 import { Issue } from './components/pages/Issue';
@@ -12,6 +13,7 @@ function App() {
       <SearchArea />
       <Issue />
       <PullRequest />
+      <HeaderTag />
       <Router />
     </div>
   );
