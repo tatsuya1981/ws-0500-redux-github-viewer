@@ -1,5 +1,5 @@
 export const PullRequest = () => {
   return (
-    <h1>野田Pull Request</h1>
+    <h1>Pull Request</h1>
   );
 };

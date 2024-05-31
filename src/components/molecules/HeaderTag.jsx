@@ -13,8 +13,8 @@ const onClickTag = () => {
   return(
     <div>
     <SHeaderTagWrapper>
-      <SHeaderTagLeft active={active} onClick={onClickTag} ><SHeaderTagSpan>Issue</SHeaderTagSpan></SHeaderTagLeft>
-      <SHeaderTagRight active={active} onClick={onClickTag} ><SHeaderTagSpan>Pull Request</SHeaderTagSpan></SHeaderTagRight>
+      <SHeaderTagLeft active={active.toString()} onClick={onClickTag} ><SHeaderTagSpan>Issue</SHeaderTagSpan></SHeaderTagLeft>
+      <SHeaderTagRight active={active.toString()} onClick={onClickTag} ><SHeaderTagSpan>Pull Request</SHeaderTagSpan></SHeaderTagRight>
     </SHeaderTagWrapper>
     </div>
   )
@@ -30,10 +30,10 @@ const SHeaderTagLeft = styled.li`
 font-size: 1.2rem;
 width: 100%;
 text-align: center;
-border-top: ${(props) => props.active? `1px solid rgb(225, 228, 232)`: `initial`};
-border-right: ${(props) => props.active? `1px solid rgb(225, 228, 232)`: `initial`};
-border-left: ${(props) => props.active? `1px solid rgb(225, 228, 232)`: `initial`};
-border-bottom: ${(props) => props.active? `initial`: `1px solid rgb(225, 228, 232)`};
+border-top: ${(props) => props.active === "true"? `1px solid rgb(225, 228, 232)`: `initial`};
+border-right: ${(props) => props.active === "true"? `1px solid rgb(225, 228, 232)`: `initial`};
+border-left: ${(props) => props.active === "true"? `1px solid rgb(225, 228, 232)`: `initial`};
+border-bottom: ${(props) => props.active === "true"? `initial`: `1px solid rgb(225, 228, 232)`};
 border-radius:6px 6px 0px 0px;
 list-style-type: none;
 `
@@ -42,10 +42,10 @@ const SHeaderTagRight = styled.li`
 font-size: 1.2rem;
 width: 100%;
 text-align: center;
-border-top: ${(props) => props.active? `initial`: `1px solid rgb(225, 228, 232)`};
-border-right: ${(props) => props.active? `initial`: `1px solid rgb(225, 228, 232)`};
-border-left: ${(props) => props.active? `initial`: `1px solid rgb(225, 228, 232)`};
-border-bottom: ${(props) => props.active? `1px solid rgb(225, 228, 232)`: `initial`};
+border-top: ${(props) => props.active === "true"? `initial`: `1px solid rgb(225, 228, 232)`};
+border-right: ${(props) => props.active === "true"? `initial`: `1px solid rgb(225, 228, 232)`};
+border-left: ${(props) => props.active === "true"? `initial`: `1px solid rgb(225, 228, 232)`};
+border-bottom: ${(props) => props.active === "true"? `1px solid rgb(225, 228, 232)`: `initial`};
 border-radius:6px 6px 0px 0px;
 list-style-type: none;
 `

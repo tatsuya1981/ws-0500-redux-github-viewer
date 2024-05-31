@@ -1,5 +1,5 @@
 export const Top = () => {
   return(
-    <h1>野田TOP</h1>
+    <h1>TOP</h1>
   );
 };
