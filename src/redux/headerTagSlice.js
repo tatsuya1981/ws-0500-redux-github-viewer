@@ -3,17 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const headerTagSlice = createSlice({
   name: "headerTag",
   initialState: {
-    isStateActive: true
+    isStateActive: true,
   },
   reducers: {
-    activeTag: (state) => {
-      return({
-        ...state,
-        isStateActive:(!state.isStateActive)
-      });
-    }
-  }
+    activeTag: (state, action) => {
+      state.isStateActive = action.payload;
+    },
+  },
 });
 
-export const {activeTag} = headerTagSlice.actions;
-export default headerTagSlice.reducer
+export const { activeTag } = headerTagSlice.actions;
+export default headerTagSlice.reducer;
