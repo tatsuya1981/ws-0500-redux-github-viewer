@@ -1,5 +1,5 @@
 export const Profile = () => {
   return(
-    <h1>野田Profile</h1>
+    <h1>Profile</h1>
   );
 };
