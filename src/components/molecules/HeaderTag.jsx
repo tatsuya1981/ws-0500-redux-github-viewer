@@ -6,15 +6,19 @@ export const HeaderTag = () => {
   const active = useSelector((state) => state.headerTag.isStateActive);
   const dispatch = useDispatch();
 
-const onClickTag = () => {
-  dispatch(activeTag());
-};
+  const onClickIssue = () => {
+    dispatch(activeTag(true));
+  };
 
+  const onClickPullRequest = () => {
+    dispatch(activeTag(false));
+  };
+  
   return(
     <div>
     <SHeaderTagWrapper>
-      <SHeaderTagLeft active={active.toString()} onClick={onClickTag} ><SHeaderTagSpan>Issue</SHeaderTagSpan></SHeaderTagLeft>
-      <SHeaderTagRight active={active.toString()} onClick={onClickTag} ><SHeaderTagSpan>Pull Request</SHeaderTagSpan></SHeaderTagRight>
+      <SHeaderTagLeft active={active.toString()} onClick={onClickIssue} ><SHeaderTagSpan>Issue</SHeaderTagSpan></SHeaderTagLeft>
+      <SHeaderTagRight active={active.toString()} onClick={onClickPullRequest} ><SHeaderTagSpan>Pull Request</SHeaderTagSpan></SHeaderTagRight>
     </SHeaderTagWrapper>
     </div>
   )

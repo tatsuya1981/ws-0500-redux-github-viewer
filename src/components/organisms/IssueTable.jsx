@@ -2,56 +2,54 @@ import styled from "styled-components";
 
 export const IssueTable = () => {
   return (
-    <>
-      <SIssueTableWrapper>
-        <SIssueTable>
-          <thead>
-            <tr>
-              <SIssueCheckBox>
-                <input type="checkbox"></input>
-              </SIssueCheckBox>
-              <SIssueTableTitle></SIssueTableTitle>
-              <SIssueTableTitle>ステータス</SIssueTableTitle>
-              <SIssueTableTitle>作成者</SIssueTableTitle>
-              <SIssueTableTitle>作成日付</SIssueTableTitle>
-              <SIssueTableTitle>更新日付</SIssueTableTitle>
-            </tr>
-          </thead>
-          <tbody>
-            <SIssueTableRow>
-              <SIssueBodyCheckBox>
-                <input type="checkbox"></input>
-              </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
-              <SIssueBodyTableLists>Open</SIssueBodyTableLists>
-              <SIssueBodyTableLists></SIssueBodyTableLists>
-              <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-              <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-            </SIssueTableRow>
-            <SIssueTableRow>
-              <SIssueBodyCheckBox>
-                <input type="checkbox"></input>
-              </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
-              <SIssueBodyTableLists>Open</SIssueBodyTableLists>
-              <SIssueBodyTableLists></SIssueBodyTableLists>
-              <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-              <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-            </SIssueTableRow>
-            <SIssueTableRow>
-              <SIssueBodyCheckBox>
-                <input type="checkbox"></input>
-              </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
-              <SIssueBodyTableLists>Open</SIssueBodyTableLists>
-              <SIssueBodyTableLists></SIssueBodyTableLists>
-              <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-              <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-            </SIssueTableRow>
-          </tbody>
-        </SIssueTable>
-      </SIssueTableWrapper>
-    </>
+          <SIssueTableWrapper>
+            <SIssueTable>
+              <thead>
+                <tr>
+                  <SIssueCheckBox>
+                    <input type="checkbox"></input>
+                  </SIssueCheckBox>
+                  <SIssueTableTitle></SIssueTableTitle>
+                  <SIssueTableTitle>ステータス</SIssueTableTitle>
+                  <SIssueTableTitle>作成者</SIssueTableTitle>
+                  <SIssueTableTitle>作成日付</SIssueTableTitle>
+                  <SIssueTableTitle>更新日付</SIssueTableTitle>
+                </tr>
+              </thead>
+              <tbody>
+                <SIssueTableRow>
+                  <SIssueBodyCheckBox>
+                    <input type="checkbox"></input>
+                  </SIssueBodyCheckBox>
+                  <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
+                  <SIssueBodyTableLists>Open</SIssueBodyTableLists>
+                  <SIssueBodyTableLists></SIssueBodyTableLists>
+                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
+                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
+                </SIssueTableRow>
+                <SIssueTableRow>
+                  <SIssueBodyCheckBox>
+                    <input type="checkbox"></input>
+                  </SIssueBodyCheckBox>
+                  <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
+                  <SIssueBodyTableLists>Open</SIssueBodyTableLists>
+                  <SIssueBodyTableLists></SIssueBodyTableLists>
+                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
+                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
+                </SIssueTableRow>
+                <SIssueTableRow>
+                  <SIssueBodyCheckBox>
+                    <input type="checkbox"></input>
+                  </SIssueBodyCheckBox>
+                  <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
+                  <SIssueBodyTableLists>Open</SIssueBodyTableLists>
+                  <SIssueBodyTableLists></SIssueBodyTableLists>
+                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
+                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
+                </SIssueTableRow>
+              </tbody>
+            </SIssueTable>
+          </SIssueTableWrapper>
   );
 };
 

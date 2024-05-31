@@ -1,5 +1,7 @@
+import { Header } from "../organisms/layout/Header";
+
 export const PullRequest = () => {
   return (
-    <h1>Pull Request</h1>
+    <Header />
   );
 };
