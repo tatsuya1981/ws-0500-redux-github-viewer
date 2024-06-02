@@ -1,7 +1,3 @@
-import { Header } from "../organisms/layout/Header";
-
 export const PullRequest = () => {
-  return (
-    <Header />
-  );
+  return <h1>PullRequest</h1>;
 };

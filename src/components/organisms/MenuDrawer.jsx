@@ -1,31 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { openMenu } from "../../redux/drawerSlice";
+import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 
 export const MenuDrawer = () => {
-  const open = useSelector((state) => state.drawer.isStateOpen)
-  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
-const onClickDrawer = () => {
-  dispatch(openMenu());
-}
+  const onClickDrawer = () => {
+    setOpen((prevState) => !prevState);
+  };
+  const location = useLocation();
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
 
   return (
     <>
-      <SMenuOverlay open={open} onClick={() => dispatch(openMenu())} />
+      <SMenuOverlay open={open} onClick={onClickDrawer} />
       <Nav>
         <HeaderMenu>
           <SBurgerIcon onClick={onClickDrawer}>
-            <SBurgerLine
-              open={open}
-              transform="translateY(9px) rotate(45deg)"
-            />
+            <SBurgerLine open={open} transform="translateY(9px) rotate(45deg)" />
             <SBurgerLine open={open} opacity={0} />
-            <SBurgerLine
-              open={open}
-              transform="translateY(-9px) rotate(-45deg)"
-            />
+            <SBurgerLine open={open} transform="translateY(-9px) rotate(-45deg)" />
           </SBurgerIcon>
         </HeaderMenu>
         <SBurgerWrapper open={open}>
@@ -71,13 +68,13 @@ height: 25px;
 `;
 
 const SBurgerLine = styled.div`
-  background-color: white;
+  background-color: #fff;
   height: 3px;
   width: 100%;
   display: block;
   margin: 6px auto;
   transition: all 0.3s ease-in-out;
-  transform: ${(props) => (props.open ? props.transform : "none")}
+  transform: ${(props) => (props.open ? props.transform : 'none')}
   opacity: ${(props) => (props.open && props.opacity === 0 ? 0 : 1)}
 `;
 
@@ -89,13 +86,13 @@ const SBurgerWrapper = styled.div`
   border-radius: 2px;
   padding: 8px 0px;
   background-color: #fff;
-  display: ${(props) => (props.open ? "block" : "none")};
+  display: ${(props) => (props.open ? 'block' : 'none')};
   box-shadow: rgba(51, 51, 51, 0.15) 1px 1px 4px 1px;
 `;
 
 const SBurgerMenu = styled.ul`
   background-color: white;
-  display: ${(props) => (props.open ? "block" : "none")};
+  display: ${(props) => (props.open ? 'block' : 'none')};
   list-style-type: none;
   padding: 0;
   margin: 0px;
@@ -112,6 +109,10 @@ const SBurgerList = styled.li`
     text-decoration: none;
     display: block;
   }
+  &:hover {
+    background-color: rgb(3, 102, 214);
+    color: white;
+  }
 `;
 
 const SMenuOverlay = styled.div`
@@ -121,6 +122,6 @@ const SMenuOverlay = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0);
-  display: ${(props) => (props.open ? "block" : "none")};
+  display: ${(props) => (props.open ? 'block' : 'none')};
   z-index: 10;
 `;

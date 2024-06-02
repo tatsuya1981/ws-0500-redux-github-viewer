@@ -1,24 +1,21 @@
-import styled from "styled-components";
-import { IssueTable } from "../organisms/IssueTable";
-import { Header } from "../organisms/layout/Header";
-import { SearchArea } from "../organisms/search/SearchArea";
-import { HeaderTag } from "../molecules/HeaderTag";
-import { Issue } from "./Issue";
+import styled from 'styled-components';
+import { IssueTable } from '../organisms/IssueTable';
+import { SearchArea } from '../organisms/search/SearchArea';
+import { HeaderTag } from '../molecules/HeaderTag';
 
 export const Top = () => {
   return (
     <div>
       <div>
-        <Header />
         <SIssue>
-        <SIssue2>
-          <SIssue3>
-            <HeaderTag />
-            <SearchArea />
-            <IssueTable />
-          </SIssue3>
-        </SIssue2>
-      </SIssue>
+          <SIssue2>
+            <SIssue3>
+              <HeaderTag />
+              <SearchArea />
+              <IssueTable />
+            </SIssue3>
+          </SIssue2>
+        </SIssue>
       </div>
     </div>
   );
