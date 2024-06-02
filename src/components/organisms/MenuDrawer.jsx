@@ -56,9 +56,9 @@ const Nav = styled.nav`
 const HeaderMenu = styled.header`
   background-color: #333;
   padding: 16px
+  align-items: center;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
 `;
 
 const SBurgerIcon = styled.div`
