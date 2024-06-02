@@ -1,7 +1,3 @@
-import { Header } from "../organisms/layout/Header";
-
 export const Profile = () => {
-  return(
-    <Header />
-  );
+  return <h1>Profile</h1>;
 };
