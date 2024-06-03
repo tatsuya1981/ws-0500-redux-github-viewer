@@ -11,7 +11,7 @@ export const HeaderTag = () => {
   return (
     <div>
       <SHeaderTagWrapper>
-        <SHeaderTagLeft active={active ? 'true' : ''} onClick={active ? undefined : onClickTag}>
+        <SHeaderTagLeft active={active ? 'true' : ''} onClick={!active ? onClickTag : undefined}>
           <SHeaderTagSpan>Issue</SHeaderTagSpan>
         </SHeaderTagLeft>
         <SHeaderTagRight active={!active ? 'true' : ''} onClick={active ? onClickTag : undefined}>

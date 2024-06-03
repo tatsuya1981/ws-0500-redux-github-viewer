@@ -1,55 +1,39 @@
-import styled from "styled-components";
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 export const IssueTable = () => {
+  const issue = useSelector((state) => state.issues.issueList);
   return (
-          <SIssueTableWrapper>
-            <SIssueTable>
-              <thead>
-                <tr>
-                  <SIssueCheckBox>
-                    <input type="checkbox"></input>
-                  </SIssueCheckBox>
-                  <SIssueTableTitle></SIssueTableTitle>
-                  <SIssueTableTitle>ステータス</SIssueTableTitle>
-                  <SIssueTableTitle>作成者</SIssueTableTitle>
-                  <SIssueTableTitle>作成日付</SIssueTableTitle>
-                  <SIssueTableTitle>更新日付</SIssueTableTitle>
-                </tr>
-              </thead>
-              <tbody>
-                <SIssueTableRow>
-                  <SIssueBodyCheckBox>
-                    <input type="checkbox"></input>
-                  </SIssueBodyCheckBox>
-                  <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
-                  <SIssueBodyTableLists>Open</SIssueBodyTableLists>
-                  <SIssueBodyTableLists></SIssueBodyTableLists>
-                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-                </SIssueTableRow>
-                <SIssueTableRow>
-                  <SIssueBodyCheckBox>
-                    <input type="checkbox"></input>
-                  </SIssueBodyCheckBox>
-                  <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
-                  <SIssueBodyTableLists>Open</SIssueBodyTableLists>
-                  <SIssueBodyTableLists></SIssueBodyTableLists>
-                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-                </SIssueTableRow>
-                <SIssueTableRow>
-                  <SIssueBodyCheckBox>
-                    <input type="checkbox"></input>
-                  </SIssueBodyCheckBox>
-                  <SIssueBodyTableTitle>A bug in Top Page</SIssueBodyTableTitle>
-                  <SIssueBodyTableLists>Open</SIssueBodyTableLists>
-                  <SIssueBodyTableLists></SIssueBodyTableLists>
-                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-                  <SIssueBodyTableLists>05-31-2024</SIssueBodyTableLists>
-                </SIssueTableRow>
-              </tbody>
-            </SIssueTable>
-          </SIssueTableWrapper>
+    <SIssueTableWrapper>
+      <SIssueTable>
+        <thead>
+          <tr>
+            <SIssueCheckBox>
+              <input type="checkbox"></input>
+            </SIssueCheckBox>
+            <SIssueTableTitle></SIssueTableTitle>
+            <SIssueTableTitle>ステータス</SIssueTableTitle>
+            <SIssueTableTitle>作成者</SIssueTableTitle>
+            <SIssueTableTitle>作成日付</SIssueTableTitle>
+            <SIssueTableTitle>更新日付</SIssueTableTitle>
+          </tr>
+        </thead>
+        <tbody>
+          {issue.map((issue) => (
+            <SIssueTableRow key={issue.id}>
+              <SIssueBodyCheckBox>
+                <input type="checkbox"></input>
+              </SIssueBodyCheckBox>
+              <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>
+              <SIssueBodyTableLists>{issue.status}</SIssueBodyTableLists>
+              <SIssueBodyTableLists>{issue.user}</SIssueBodyTableLists>
+              <SIssueBodyTableLists>{issue.creationDate}</SIssueBodyTableLists>
+              <SIssueBodyTableLists>{issue.updateDate}</SIssueBodyTableLists>
+            </SIssueTableRow>
+          ))}
+        </tbody>
+      </SIssueTable>
+    </SIssueTableWrapper>
   );
 };
 
