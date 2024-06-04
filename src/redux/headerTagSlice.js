@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const headerTagSlice = createSlice({
-  name: "headerTag",
+  name: 'headerTag',
   initialState: {
     isStateActive: true,
   },

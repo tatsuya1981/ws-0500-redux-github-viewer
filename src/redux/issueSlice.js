@@ -37,7 +37,7 @@ const issues = [
 export const issueSlice = createSlice({
   name: 'issues',
   initialState: {
-    issueList: issues,
+    isIssueList: issues,
   },
   reducers: {
     addIssue: (state, action) => {
