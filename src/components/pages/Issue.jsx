@@ -8,8 +8,7 @@ export const Issue = () => {
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-            <SearchArea />
-            <IssueTable />
+          <SearchArea />
           </SIssueGroup>
         </SIssueWrapper>
       </SIssueContainer>

@@ -21,7 +21,6 @@ export const checkBoxSlice = createSlice({
       } else {
         state.selectedItems.push(itemId);
       }
-      state.isAllSelected = state.selectedItems.length === action.payload.length;
     },
   },
 });
