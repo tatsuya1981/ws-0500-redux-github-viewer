@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { toggleAllSelected, toggleItemSelected } from '../../redux/checkBoxSlice';
 
-export const IssueTable = () => {
-  const issue = useSelector((state) => state.issues.isIssueList);
+export const IssueTable = ({issues=[]}) => {
+  // console.log("IssueTable issues:", issues);
+  const issue = useSelector((state) => state.issues.issueList);
   const selectItems = useSelector((state) => state.checkBox.selectedItems);
   const dispatch = useDispatch();
-  const toggleAll = () => dispatch(toggleAllSelected(issue.map((item) => item.id)));
+  const toggleAll = () => dispatch(toggleAllSelected(issues.map((item) => item.id)));
   const toggleItem = (itemId) => () => dispatch(toggleItemSelected(itemId));
   return (
     <SIssueTableWrapper>
@@ -24,7 +25,7 @@ export const IssueTable = () => {
           </tr>
         </thead>
         <tbody>
-          {issue.map((issue) => (
+          {issues.map((issue) => (
             <SIssueTableRow key={issue.id}>
               <SIssueBodyCheckBox>
                 <input type="checkbox" checked={selectItems.includes(issue.id)} onChange={() => toggleItem(issue.id)()}></input>
