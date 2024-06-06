@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import { Input } from "./input/Input";
 import { useSelector } from 'react-redux';
@@ -20,10 +21,11 @@ export const SearchIssues = ({ onFilter }) => {
     <SContainer>
       <Input placeholder="issue名で検索" value={searchKeyword} onChange={handleSearch} />
     </SContainer>
+
   );
 };
 
 const SContainer = styled.div`
-padding: 8px 16px;
-width: 100%;
+  padding: 8px 16px;
+  width: 100%;
 `;
