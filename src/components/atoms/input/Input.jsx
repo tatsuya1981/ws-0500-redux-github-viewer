@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Input = ({ placeholder = "" }) => {
+export const Input = ({ placeholder = "", value, onChange }) => {
   return (
   <SInputContainer>
-  <SInput type="text" placeholder={placeholder} />
+  <SInput type="text" placeholder={placeholder} value={value} onChange={onChange} />
   </SInputContainer>
   );
 };
