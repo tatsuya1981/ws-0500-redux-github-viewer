@@ -1,21 +1,35 @@
 import styled from 'styled-components';
 import { SearchArea } from '../organisms/search/SearchArea';
 import { IssueTable } from '../organisms/IssueTable';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const Issue = () => {
+  const issueList = useSelector((state) => state.issues.issueList)
+  console.log("Issue issueList:", issueList);
+  const [filteredIssues, setFilteredIssues] = useState(issueList);
+
+  const handleFilter = (issues) => {
+    setFilteredIssues(issues);
+  };
+
+  useEffect(() => {
+    setFilteredIssues(issueList);
+  }, [issueList]);
+
   return (
     <div>
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-          <SearchArea />
+            <SearchArea onFilter={handleFilter} />
+            <IssueTable issues={filteredIssues} />
           </SIssueGroup>
         </SIssueWrapper>
       </SIssueContainer>
     </div>
   );
 };
-
 const SIssueContainer = styled.div`
   max-width: 896px;
   margin: 0 auto;

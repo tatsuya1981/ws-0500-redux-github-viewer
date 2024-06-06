@@ -1,22 +1,27 @@
-import styled from 'styled-components';
-import { Input } from './input/Input';
+
+import styled from "styled-components";
+import { Input } from "./input/Input";
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
-export const SearchIssues = ({children}) => {
+export const SearchIssues = ({ onFilter }) => {
   const [searchKeyword, setSearchKeyword] = useState('');
-  const issues = useSelector((state) => state.issues.issueList.filter((issue) => 
-  issue.title.toLowerCase().includes(searchKeyword.toLowerCase()) ));
+  const issues = useSelector((state) => state.issues.issueList);
+
   const handleSearch = (event) => {
-    setSearchKeyword(event.target.value);
+    const keyword = event.target.value;
+    setSearchKeyword(keyword);
+    const filteredIssues = issues.filter((issue) => 
+      issue.title.toLowerCase().includes(keyword.toLowerCase())
+    );
+    onFilter(filteredIssues);
   };
+
   return (
-    <>
     <SContainer>
       <Input placeholder="issue名で検索" value={searchKeyword} onChange={handleSearch} />
     </SContainer>
-    {children(issues)}
-    </>
+
   );
 };
 

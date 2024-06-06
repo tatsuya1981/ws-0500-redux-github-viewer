@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IssueTable } from '../organisms/IssueTable';
 import { SearchArea } from '../organisms/search/SearchArea';
 import { HeaderTag } from '../molecules/HeaderTag';
+import { Issue } from './Issue';
 
 export const Top = () => {
   return (
@@ -11,8 +12,7 @@ export const Top = () => {
           <SIssue2>
             <SIssue3>
               <HeaderTag />
-              <SearchArea />
-              <IssueTable />
+              <Issue />
             </SIssue3>
           </SIssue2>
         </SIssue>
