@@ -4,8 +4,6 @@ import { toggleAllSelected, toggleItemSelected } from '../../redux/checkBoxSlice
 
 
 export const IssueTable = ({issues=[]}) => {
-  // console.log("IssueTable issues:", issues);
-
   const issue = useSelector((state) => state.issues.issueList);
   const selectItems = useSelector((state) => state.checkBox.selectedItems);
   const dispatch = useDispatch();
