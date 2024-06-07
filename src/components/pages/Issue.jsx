@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const Issue = () => {
-  const issueList = useSelector((state) => state.issues.issueList)
+  const issueList = useSelector((state) => state.issues.issueList);
   const [filteredIssues, setFilteredIssues] = useState(issueList);
 
   const handleFilter = (issues) => {

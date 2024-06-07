@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Input } from "./input/Input";
+import styled from 'styled-components';
+import { Input } from './input/Input';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
@@ -10,9 +10,7 @@ export const SearchIssues = ({ onFilter }) => {
   const handleSearch = (event) => {
     const keyword = event.target.value;
     setSearchKeyword(keyword);
-    const filteredIssues = issues.filter((issue) => 
-      issue.title.toLowerCase().includes(keyword.toLowerCase())
-    );
+    const filteredIssues = issues.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
     onFilter(filteredIssues);
   };
 
@@ -24,6 +22,6 @@ export const SearchIssues = ({ onFilter }) => {
 };
 
 const SContainer = styled.div`
-padding: 8px 16px;
-width: 100%;
+  padding: 8px 16px;
+  width: 100%;
 `;
