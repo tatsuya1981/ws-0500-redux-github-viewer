@@ -1,5 +1,7 @@
+
 import styled from 'styled-components';
 import { Input } from './input/Input';
+
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 
@@ -18,6 +20,7 @@ export const SearchIssues = ({ onFilter }) => {
     <SContainer>
       <Input placeholder="issue名で検索" value={searchKeyword} onChange={handleSearch} />
     </SContainer>
+
   );
 };
 

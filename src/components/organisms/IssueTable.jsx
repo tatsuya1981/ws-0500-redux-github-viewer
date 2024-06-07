@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { toggleAllSelected, toggleItemSelected } from '../../redux/checkBoxSlice';
 
+
 export const IssueTable = ({ issues = [] }) => {
+
   const issue = useSelector((state) => state.issues.issueList);
   const selectItems = useSelector((state) => state.checkBox.selectedItems);
   const dispatch = useDispatch();

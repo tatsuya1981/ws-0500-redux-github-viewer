@@ -12,12 +12,21 @@ export const SearchArea = ({ onFilter }) => {
     onFilter(issues);
   };
 
+
   return (
+    <>
     <SSearchArea>
       <IssueTitle />
+
       <SearchIssues onFilter={handleFilter} />
+
       <IssueButtons />
+      <IssueTable issues={issues} />
+        </>
+      )}
+      </SearchIssues>
     </SSearchArea>
+    </>
   );
 };
 
