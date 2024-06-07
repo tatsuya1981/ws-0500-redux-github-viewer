@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const HeaderTitles = () => {
   return (
@@ -11,15 +11,15 @@ export const HeaderTitles = () => {
         <Link to="/pullRequest">Pull Request</Link>
       </SHeaderLists>
     </SHeaderTitles>
-  )
-}
+  );
+};
 
 const SHeaderTitles = styled.ul`
   display: flex;
   width: 100%;
   padding: 0px 32px
   margin: 0px;
-`
+`;
 
 const SHeaderLists = styled.li`
   margin-right: 16px;
@@ -30,4 +30,4 @@ const SHeaderLists = styled.li`
     color: inherit;
     text-decoration: none;
   }
-`
+`;

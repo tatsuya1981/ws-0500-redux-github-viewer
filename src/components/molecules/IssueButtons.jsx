@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { DeleteButton } from "../atoms/button/DeleteButton";
-import { PrimaryButton } from "../atoms/button/PrimaryButton";
+import styled from 'styled-components';
+import { DeleteButton } from '../atoms/button/DeleteButton';
+import { PrimaryButton } from '../atoms/button/PrimaryButton';
 
 export const IssueButtons = () => {
   return (
@@ -12,6 +12,6 @@ export const IssueButtons = () => {
 };
 
 const Scontainer = styled.div`
-font-family: "Lato", sans-serif;
-display: flex;
-`
+  font-family: 'Lato', sans-serif;
+  display: flex;
+`;

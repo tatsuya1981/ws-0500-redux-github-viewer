@@ -1,12 +1,12 @@
-import styled from 'styled-components'
-import { useState } from 'react'
+import styled from 'styled-components';
+import { useState } from 'react';
 
 export const HeaderTag = () => {
-  const [active, setActive] = useState(true)
+  const [active, setActive] = useState(true);
 
   const onClickTag = () => {
-    setActive((prevState) => !prevState)
-  }
+    setActive((prevState) => !prevState);
+  };
 
   return (
     <div>
@@ -19,14 +19,14 @@ export const HeaderTag = () => {
         </SHeaderTagRight>
       </SHeaderTagWrapper>
     </div>
-  )
-}
+  );
+};
 
 const SHeaderTagWrapper = styled.ul`
   display: flex;
   padding: 0px;
   margin: 0px;
-`
+`;
 
 const SHeaderTagLeft = styled.li`
   font-size: 1.2rem;
@@ -38,7 +38,7 @@ const SHeaderTagLeft = styled.li`
   border-bottom: ${(props) => (`${props.active}` ? `initial` : `1px solid rgb(225, 228, 232)`)};
   border-radius: 6px 6px 0px 0px;
   list-style-type: none;
-`
+`;
 
 const SHeaderTagRight = styled.li`
   font-size: 1.2rem;
@@ -50,7 +50,7 @@ const SHeaderTagRight = styled.li`
   border-bottom: ${(props) => (`${props.active}` ? `initial` : `1px solid rgb(225, 228, 232)`)};
   border-radius: 6px 6px 0px 0px;
   list-style-type: none;
-`
+`;
 
 const SHeaderTagSpan = styled.span`
   cursor: pointer;
@@ -58,4 +58,4 @@ const SHeaderTagSpan = styled.span`
   padding: 16px;
   display: block;
   width: 100%;
-`
+`;

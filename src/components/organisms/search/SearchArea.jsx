@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { IssueTitle } from "../../atoms/IssueTitle";
-import { SearchIssues } from "../../atoms/SearchIssue";
-import { IssueButtons } from "../../molecules/IssueButtons";
+import styled from 'styled-components';
+import { IssueTitle } from '../../atoms/IssueTitle';
+import { SearchIssues } from '../../atoms/SearchIssue';
+import { IssueButtons } from '../../molecules/IssueButtons';
 import { useState } from 'react';
 
 export const SearchArea = ({ onFilter }) => {
@@ -22,6 +22,6 @@ export const SearchArea = ({ onFilter }) => {
 };
 
 const SSearchArea = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 `;

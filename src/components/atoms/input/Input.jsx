@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Input = ({ placeholder = "", value, onChange }) => {
+export const Input = ({ placeholder = '', value, onChange }) => {
   return (
-  <SInputContainer>
-  <SInput type="text" placeholder={placeholder} value={value} onChange={onChange} />
-  </SInputContainer>
+    <SInputContainer>
+      <SInput type="text" placeholder={placeholder} value={value} onChange={onChange} />
+    </SInputContainer>
   );
 };
 
 const SInput = styled.input`
-padding: 8px;
+  padding: 8px;
   width: 100%;
   border-radius: 6px;
   font-size: 1rem;
@@ -19,4 +19,4 @@ padding: 8px;
 
 const SInputContainer = styled.div`
   width: 100%;
-`
+`;

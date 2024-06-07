@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BaseButton = styled.button`
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   cursor: pointer;
   display: block;
   width: 100%;
