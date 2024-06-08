@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { DeleteButton } from '../atoms/button/DeleteButton';
-import { PrimaryButton } from '../atoms/button/PrimaryButton';
+import Button from '../atoms/button/Button';
 
 export const IssueButtons = () => {
   return (
     <Scontainer>
-      <PrimaryButton>New</PrimaryButton>
-      <DeleteButton>Delete</DeleteButton>
+      <Button variant={'primary'}>New</Button>
+      <Button variant={'danger'}>Delete</Button>
     </Scontainer>
   );
 };

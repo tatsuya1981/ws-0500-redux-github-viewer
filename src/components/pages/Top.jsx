@@ -4,8 +4,6 @@ import { Issue } from './Issue';
 
 export const Top = () => {
   return (
-    <div>
-      <div>
         <SIssue>
           <SIssue2>
             <SIssue3>
@@ -14,8 +12,6 @@ export const Top = () => {
             </SIssue3>
           </SIssue2>
         </SIssue>
-      </div>
-    </div>
   );
 };
 
