@@ -10,7 +10,7 @@ export const Profile = () => {
             <div>
               <label>プロフィール</label>
               <p>
-                <img src="../../../00005429_ca15a5.jpg" />
+                avaterをここに入れる
               </p>
             </div>
           </div>

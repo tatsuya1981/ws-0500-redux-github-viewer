@@ -1,20 +1,27 @@
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { toggleAllSelected, toggleItemSelected } from '../../redux/checkBoxSlice';
+import { useState } from 'react';
 
 export const IssueTable = ({ issues = [] }) => {
-  const issue = useSelector((state) => state.issues.issueList);
-  const selectItems = useSelector((state) => state.checkBox.selectedItems);
-  const dispatch = useDispatch();
-  const toggleAll = () => dispatch(toggleAllSelected(issues.map((item) => item.id)));
-  const toggleItem = (itemId) => () => dispatch(toggleItemSelected(itemId));
+  const [selectedItems, setSelectedItems] = useState([]);
+  const allSelected = issues.length > 0 && selectedItems.length === issues.length;
+
   return (
     <SIssueTableWrapper>
       <SIssueTable>
         <thead>
           <tr>
             <SIssueCheckBox>
-              <input type="checkbox" onClick={toggleAll}></input>
+              <input
+                type="checkbox"
+                checked={allSelected}
+                onChange={(e) => {
+                  if (allSelected) {
+                    setSelectedItems([]);
+                  } else {
+                    setSelectedItems(issues.map((issue) => issue.id));
+                  }
+                }}
+              ></input>
             </SIssueCheckBox>
             <SIssueTableTitle></SIssueTableTitle>
             <SIssueTableTitle>ステータス</SIssueTableTitle>
@@ -29,8 +36,16 @@ export const IssueTable = ({ issues = [] }) => {
               <SIssueBodyCheckBox>
                 <input
                   type="checkbox"
-                  checked={selectItems.includes(issue.id)}
-                  onChange={() => toggleItem(issue.id)()}
+                  checked={selectedItems.includes(issue.id)}
+                  onChange={(e) => {
+                    const selectedId = Number(e.target.value);
+                    if (selectedItems.includes(selectedId)) {
+                      setSelectedItems(selectedItems.filter((id) => id !== selectedId));
+                    } else {
+                      setSelectedItems([...selectedItems, selectedId]);
+                    }
+                  }}
+                  value={issue.id}
                 ></input>
               </SIssueBodyCheckBox>
               <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>

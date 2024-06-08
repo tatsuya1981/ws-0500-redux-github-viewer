@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 export const SearchArea = ({ onFilter }) => {
   const [filteredIssues, setFilteredIssues] = useState([]);
-
   const handleFilter = (issues) => {
     setFilteredIssues(issues);
     onFilter(issues);
