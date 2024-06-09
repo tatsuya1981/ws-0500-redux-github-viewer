@@ -22,10 +22,10 @@ const SIssue = styled.div`
 `;
 
 const SIssue2 = styled.div`
-  // padding: 16px;
+  padding: 16px;
 `;
 
 const SIssue3 = styled.div`
-  // padding: 16px;
+  padding: 16px;
   margin-top: 16px;
 `;

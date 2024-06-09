@@ -3,14 +3,14 @@ import Button from '../atoms/button/Button';
 
 export const IssueButtons = () => {
   return (
-    <Scontainer>
+    <SContainer>
       <Button variant={'primary'}>New</Button>
       <Button variant={'danger'}>Delete</Button>
-    </Scontainer>
+    </SContainer>
   );
 };
 
-const Scontainer = styled.div`
+const SContainer = styled.div`
   font-family: 'Lato', sans-serif;
   display: flex;
 `;
