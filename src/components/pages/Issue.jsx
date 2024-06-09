@@ -1,28 +1,25 @@
 import styled from 'styled-components';
 import { SearchArea } from '../organisms/search/SearchArea';
 import { IssueTable } from '../organisms/IssueTable';
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 export const Issue = () => {
   const issueList = useSelector((state) => state.issues.issueList);
-  const [filteredIssues, setFilteredIssues] = useState(issueList);
+  const [search, setSearch] = useState(issueList);
 
-  const handleFilter = (issues) => {
-    setFilteredIssues(issues);
+  const handleSearch = (keyword) => {
+    const filteredIssues = issueList.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
+    setSearch(filteredIssues);
   };
-
-  useEffect(() => {
-    setFilteredIssues(issueList);
-  }, [issueList]);
 
   return (
     <div>
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-            <SearchArea onFilter={handleFilter} />
-            <IssueTable issues={filteredIssues} />
+            <SearchArea onSearch={handleSearch} />
+            <IssueTable issues={search} />
           </SIssueGroup>
         </SIssueWrapper>
       </SIssueContainer>

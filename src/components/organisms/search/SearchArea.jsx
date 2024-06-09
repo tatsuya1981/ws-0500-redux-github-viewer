@@ -2,19 +2,16 @@ import styled from 'styled-components';
 import { IssueTitle } from '../../atoms/IssueTitle';
 import { SearchIssues } from '../../atoms/SearchIssue';
 import { IssueButtons } from '../../molecules/IssueButtons';
-import { useState } from 'react';
 
-export const SearchArea = ({ onFilter }) => {
-  const [filteredIssues, setFilteredIssues] = useState([]);
-  const handleFilter = (issues) => {
-    setFilteredIssues(issues);
-    onFilter(issues);
+export const SearchArea = ({ onSearch }) => {
+  const handleSearch = (keyword) => {
+    onSearch(keyword);
   };
 
   return (
     <SSearchArea>
       <IssueTitle />
-      <SearchIssues onFilter={handleFilter} />
+      <SearchIssues onSearch={handleSearch} />
       <IssueButtons />
     </SSearchArea>
   );
