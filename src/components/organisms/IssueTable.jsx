@@ -14,7 +14,7 @@ export const IssueTable = ({ issues = [] }) => {
               <input
                 type="checkbox"
                 checked={allSelected}
-                onChange={(e) => {
+                onChange={( ) => {
                   if (allSelected) {
                     setSelectedItems([]);
                   } else {
@@ -48,7 +48,7 @@ export const IssueTable = ({ issues = [] }) => {
                   value={issue.id}
                 ></input>
               </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle class="outline">{issue.title}</SIssueBodyTableTitle>
               <SIssueBodyTableLists>{issue.status}</SIssueBodyTableLists>
               <SIssueBodyTableLists>{issue.user}</SIssueBodyTableLists>
               <SIssueBodyTableLists>{issue.creationDate}</SIssueBodyTableLists>
@@ -80,7 +80,7 @@ const SIssueCheckBox = styled.th`
 const SIssueTableTitle = styled.th`
   padding: 8px;
   text-align: left;
-  min-width: 10rem;
+  min-width: 10em;
   border-bottom: 1px solid rgb(225, 228, 232);
 `;
 
@@ -103,9 +103,6 @@ const SIssueBodyTableTitle = styled.td`
   text-align: left;
   min-width: 10rem;
   border-bottom: 1px solid rgb(225, 228, 232);
-  outline {
-    width: 140rem;
-  }
 `;
 
 const SIssueBodyTableLists = styled.td`

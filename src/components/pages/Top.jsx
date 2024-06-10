@@ -16,7 +16,7 @@ export const Top = () => {
 };
 
 const SIssue = styled.div`
-  max-width: 896px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 32px 16px;
 `;
