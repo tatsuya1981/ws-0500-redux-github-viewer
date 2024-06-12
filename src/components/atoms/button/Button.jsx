@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const Button = ({ variant, children, ...props }) => {
+  const Component = SVariants[variant] || SBase;
+  return <Component {...props}>{children}</Component>;
+};
+
 const SBase = styled.button`
   font-family: 'Lato', sans-serif;
   cursor: pointer;
@@ -30,11 +35,6 @@ const SVariants = {
       background-color: rgb(160, 28, 4);
     }
   `,
-};
-
-const Button = ({ variant, children }) => {
-  const Component = SVariants[variant] || SBase;
-  return <Component>{children}</Component>;
 };
 
 export default Button;

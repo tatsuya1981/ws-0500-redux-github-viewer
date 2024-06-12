@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const Profile = () => {
   const user = useSelector((state) => state.user.userStatus[0]);
-  debugger;
   return (
     <SUserContainer>
       <SUserWrapper>

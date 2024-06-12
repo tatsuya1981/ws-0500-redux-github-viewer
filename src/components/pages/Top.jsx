@@ -4,28 +4,28 @@ import { Issue } from './Issue';
 
 export const Top = () => {
   return (
-        <SIssue>
-          <SIssue2>
-            <SIssue3>
+        <STopIssue>
+          <STopIssueContainer>
+            <STopIssueWrapper>
               <HeaderTag />
               <Issue />
-            </SIssue3>
-          </SIssue2>
-        </SIssue>
+            </STopIssueWrapper>
+          </STopIssueContainer>
+        </STopIssue>
   );
 };
 
-const SIssue = styled.div`
+const STopIssue = styled.div`
   max-width: 1080px;
   margin: 0 auto;
   padding: 32px 16px;
 `;
 
-const SIssue2 = styled.div`
+const STopIssueContainer = styled.div`
   padding: 16px;
 `;
 
-const SIssue3 = styled.div`
+const STopIssueWrapper = styled.div`
   padding: 16px;
   margin-top: 16px;
 `;

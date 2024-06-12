@@ -48,7 +48,7 @@ export const IssueTable = ({ issues = [] }) => {
                   value={issue.id}
                 ></input>
               </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle class="outline">{issue.title}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>
               <SIssueBodyTableLists>{issue.status}</SIssueBodyTableLists>
               <SIssueBodyTableLists>{issue.user}</SIssueBodyTableLists>
               <SIssueBodyTableLists>{issue.creationDate}</SIssueBodyTableLists>
