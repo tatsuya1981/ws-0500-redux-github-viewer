@@ -12,7 +12,7 @@ export const Issue = () => {
     return issueList.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
   }, [issueList, keyword]);
 
-  const handleSearch = (keyword) => {
+  const onChange = (keyword) => {
     setKeyword(keyword);
   };
 
@@ -21,7 +21,7 @@ export const Issue = () => {
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-            <SearchArea onChange={handleSearch} />
+            <SearchArea onChange={onChange} />
             <IssueTable issues={filteredIssues} />
           </SIssueGroup>
         </SIssueWrapper>
