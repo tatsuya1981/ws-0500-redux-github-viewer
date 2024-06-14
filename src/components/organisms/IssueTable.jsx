@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import IssueDetail from './IssueDetail';
 
 export const IssueTable = ({ issues = [] }) => {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedIssue, setSelectedIssue] = useState('');
   const allSelected = issues.length > 0 && selectedItems.length === issues.length;
+
+  const handleIssueClick = (issue) => {
+    setSelectedIssue(issue);
+  };
 
   return (
     <SIssueTableWrapper>
@@ -14,7 +20,7 @@ export const IssueTable = ({ issues = [] }) => {
               <input
                 type="checkbox"
                 checked={allSelected}
-                onChange={( ) => {
+                onChange={() => {
                   if (allSelected) {
                     setSelectedItems([]);
                   } else {
@@ -48,15 +54,16 @@ export const IssueTable = ({ issues = [] }) => {
                   value={issue.id}
                 ></input>
               </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>
-              <SIssueBodyTableLists>{issue.status}</SIssueBodyTableLists>
-              <SIssueBodyTableLists>{issue.user}</SIssueBodyTableLists>
-              <SIssueBodyTableLists>{issue.creationDate}</SIssueBodyTableLists>
-              <SIssueBodyTableLists>{issue.updateDate}</SIssueBodyTableLists>
+              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.title}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.status}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.user}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.creationDate}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.updateDate}</SIssueBodyTableTitle>
             </SIssueTableRow>
           ))}
         </tbody>
       </SIssueTable>
+      {selectedIssue && <IssueDetail issue={selectedIssue} onClose={() => setSelectedIssue("")} />}
     </SIssueTableWrapper>
   );
 };
@@ -99,13 +106,6 @@ const SIssueBodyCheckBox = styled.td`
 `;
 
 const SIssueBodyTableTitle = styled.td`
-  padding: 8px;
-  text-align: left;
-  min-width: 10rem;
-  border-bottom: 1px solid rgb(225, 228, 232);
-`;
-
-const SIssueBodyTableLists = styled.td`
   padding: 8px;
   text-align: left;
   min-width: 10rem;

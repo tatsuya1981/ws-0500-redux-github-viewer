@@ -13,6 +13,7 @@ const openModal = () => {
 
 const closeModal = () => {
   setIsModalOpen(false);
+  
 };
 
   return (

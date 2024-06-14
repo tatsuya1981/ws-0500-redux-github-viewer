@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { addIssue } from '../../redux/issueSlice';
+import styled from 'styled-components';
 
-const IssueModal = ({ isOpen, onClose }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+const IssueDetail = ({ issue, onClose }) => {
+  const [title, setTitle] = useState(issue.title);
+  const [description, setDescription] = useState(issue.description);
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userStatus[0]);
@@ -36,18 +36,15 @@ const IssueModal = ({ isOpen, onClose }) => {
     onClose();
     setTitle('');
     setDescription('');
-    setErrormessage("");
+    setErrormessage('');
   };
 
-  const modalClose = () => 
-    {
-      onClose();
-      setTitle('');
-      setDescription('');
-      setErrormessage("");
-    }
-
-  if (!isOpen) return null;
+  const modalClose = () => {
+    onClose();
+    setTitle('');
+    setDescription('');
+    setErrormessage('');
+  };
 
   return (
     <SModalOverLay>
@@ -212,4 +209,4 @@ const SModalButtonRight = styled.a`
   }
 `;
 
-export default IssueModal;
+export default IssueDetail;
