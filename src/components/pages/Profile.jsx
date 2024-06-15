@@ -1,29 +1,29 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 export const Profile = () => {
+  const user = useSelector((state) => state.user.userStatus[0]);
   return (
     <SUserContainer>
       <SUserWrapper>
         <SProfileTitle>Profile</SProfileTitle>
         <SUserProfileContainer>
-          <div>
+          <SProfileContents>
+            <SUserTitle>プロフィール</SUserTitle>
+            <SUserInfo>
+              <SAvatarImage src={user.image} alt="profile" />
+            </SUserInfo>
+          </SProfileContents>
+          <SProfileContents>
             <div>
-              <label>プロフィール</label>
-              <p>
-                avaterをここに入れる
-              </p>
-            </div>
-          </div>
-          <div>
-            <div>
-              <label>ユーザ名</label>
-              <p>test</p>
+              <SUserTitle>ユーザ名</SUserTitle>
+              <SUserInfo>{user.userName}</SUserInfo>
             </div>
             <div>
-              <label>メールアドレス</label>
-              <p>test@example.com</p>
+              <SUserTitle>メールアドレス</SUserTitle>
+              <SUserInfo>{user.email}</SUserInfo>
             </div>
-          </div>
+          </SProfileContents>
         </SUserProfileContainer>
       </SUserWrapper>
     </SUserContainer>
@@ -45,11 +45,33 @@ const SProfileTitle = styled.h1`
   font-size: 2rem;
   padding: 0px;
   margin: 0px;
+  text-align: left;
 `;
 
 const SUserProfileContainer = styled.div`
   margin: 32px 0;
   display: flex;
+  text-align: left;
   border-radius: 6px;
   border: 1px solid rgb(225, 228, 232);
+`;
+
+const SProfileContents = styled.div`
+  padding: 16px;
+  width: 50%;
+`;
+
+const SUserTitle = styled.label`
+  color: rgb(88, 96, 105);
+`;
+
+const SUserInfo = styled.p`
+  margin: 0;
+  padding: 16px 0px;
+  font-size: 1.2rem;
+`;
+
+const SAvatarImage = styled.img`
+  width: 20%;
+  min-width: 60px;
 `;

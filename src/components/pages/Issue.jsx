@@ -2,15 +2,18 @@ import styled from 'styled-components';
 import { SearchArea } from '../organisms/search/SearchArea';
 import { IssueTable } from '../organisms/IssueTable';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export const Issue = () => {
   const issueList = useSelector((state) => state.issues.issueList);
-  const [search, setSearch] = useState(issueList);
+  const [keyword, setKeyword] = useState('');
 
-  const handleSearch = (keyword) => {
-    const filteredIssues = issueList.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
-    setSearch(filteredIssues);
+  const filteredIssues = useMemo(() => {
+    return issueList.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
+  }, [issueList, keyword]);
+
+  const onChange = (keyword) => {
+    setKeyword(keyword);
   };
 
   return (
@@ -18,8 +21,8 @@ export const Issue = () => {
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-            <SearchArea onSearch={handleSearch} />
-            <IssueTable issues={search} />
+            <SearchArea onChange={onChange} />
+            <IssueTable issues={filteredIssues} />
           </SIssueGroup>
         </SIssueWrapper>
       </SIssueContainer>

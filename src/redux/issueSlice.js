@@ -10,7 +10,7 @@ const issues = [
     title: 'A bug in Top Page',
     status: 'open',
     user: '',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     creationDate: today,
     updateDate: today,
   },
@@ -19,7 +19,7 @@ const issues = [
     title: 'A problem of performance in Top Page',
     status: 'open',
     user: '',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     creationDate: today,
     updateDate: today,
   },
@@ -28,7 +28,7 @@ const issues = [
     title: 'fix layout',
     status: 'open',
     user: '',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     creationDate: today,
     updateDate: today,
   },
@@ -40,7 +40,9 @@ export const issueSlice = createSlice({
     issueList: issues,
   },
   reducers: {
-    addIssue: (state, action) => state.issueList.push(action.payload),
+    addIssue: (state, action) => {
+      state.issueList.push(action.payload);
+    },
     updateIssue: (state, action) => {
       const index = state.issueList.findIndex((issue) => issue.id === action.payload.id);
       if (index !== -1) {

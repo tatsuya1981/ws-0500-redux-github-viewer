@@ -3,9 +3,9 @@ import { IssueTitle } from '../../atoms/IssueTitle';
 import { SearchIssues } from '../../atoms/SearchIssue';
 import { IssueButtons } from '../../molecules/IssueButtons';
 
-export const SearchArea = ({ onSearch }) => {
+export const SearchArea = ({ onChange }) => {
   const handleSearch = (keyword) => {
-    onSearch(keyword);
+    onChange(keyword);
   };
 
   return (
