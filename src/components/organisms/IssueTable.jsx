@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import IssueDetail from './IssueDetail';
+import IssueModal from './IssueModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal, openModal } from '../../redux/issueSlice';
 
 export const IssueTable = ({ issues = [] }) => {
   const [selectedItems, setSelectedItems] = useState([]);
-  const [selectedIssue, setSelectedIssue] = useState('');
+  const [selectedIssue, setSelectedIssue] = useState(null);
+  const dispatch = useDispatch();
   const allSelected = issues.length > 0 && selectedItems.length === issues.length;
+  const isModalOpen = useSelector((state) => state.issues.isModalOpen);
 
   const handleIssueClick = (issue) => {
     setSelectedIssue(issue);
+    dispatch(openModal());
+  };
+
+  const handleCloseModal = () => {
+    setSelectedIssue(null);
+    dispatch(closeModal());
   };
 
   return (
@@ -38,8 +48,12 @@ export const IssueTable = ({ issues = [] }) => {
         </thead>
         <tbody>
           {issues.map((issue) => (
-            <SIssueTableRow key={issue.id}>
-              <SIssueBodyCheckBox>
+            <SIssueTableRow key={issue.id} onClick={() => handleIssueClick(issue)}>
+              <SIssueBodyCheckBox
+                onClick={(event) => {
+                  event.stopPropagation();
+                }}
+              >
                 <input
                   type="checkbox"
                   checked={selectedItems.includes(issue.id)}
@@ -54,16 +68,18 @@ export const IssueTable = ({ issues = [] }) => {
                   value={issue.id}
                 ></input>
               </SIssueBodyCheckBox>
-              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.title}</SIssueBodyTableTitle>
-              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.status}</SIssueBodyTableTitle>
-              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.user}</SIssueBodyTableTitle>
-              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.creationDate}</SIssueBodyTableTitle>
-              <SIssueBodyTableTitle onClick={() => handleIssueClick(issue)}>{issue.updateDate}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.status}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.user}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.creationDate}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.updateDate}</SIssueBodyTableTitle>
             </SIssueTableRow>
           ))}
         </tbody>
       </SIssueTable>
-      {selectedIssue && <IssueDetail issue={selectedIssue} onClose={() => setSelectedIssue("")} />}
+      {selectedIssue && (
+        <IssueModal issue={selectedIssue} onClose={handleCloseModal} modalType={'edit'} isOpen={isModalOpen} />
+      )}
     </SIssueTableWrapper>
   );
 };
