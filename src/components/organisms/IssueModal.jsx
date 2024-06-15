@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addIssue } from '../../redux/issueSlice';
 import styled from 'styled-components';
+import { addIssue } from '../../redux/issueSlice';
 
-const IssueDetail = ({ issue, onClose }) => {
-  const [title, setTitle] = useState(issue.title);
-  const [description, setDescription] = useState(issue.description);
+const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
+  const [title, setTitle] = useState(modalType === 'edit' ? issue.title : '');
+  const [description, setDescription] = useState(modalType === 'edit' ? issue.description : '');
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userStatus[0]);
@@ -46,11 +46,13 @@ const IssueDetail = ({ issue, onClose }) => {
     setErrormessage('');
   };
 
+  if (!isOpen) return null;
+
   return (
     <SModalOverLay>
       <SModalContent>
         <SModalContainer>
-          <SModalTitle>Issueを追加</SModalTitle>
+          <SModalTitle>{modalType === 'edit' ? 'Issueを編集' : 'Issueを追加'}</SModalTitle>
           <STitleContainer>
             <STitleWrapper>
               <STitleLabel>タイトル</STitleLabel>
@@ -76,7 +78,7 @@ const IssueDetail = ({ issue, onClose }) => {
           </STitleContainer>
           <SModalError> {errorMessage && <SModalErrorMessage>{errorMessage}</SModalErrorMessage>} </SModalError>
           <SModalButtonWrapper>
-            <SModalButtonLeft onClick={handleSubmit}>作成</SModalButtonLeft>
+            <SModalButtonLeft onClick={handleSubmit}>{modalType === 'edit' ? '更新' : '作成'}</SModalButtonLeft>
             <SModalButtonRight onClick={modalClose}>閉じる</SModalButtonRight>
           </SModalButtonWrapper>
         </SModalContainer>
@@ -209,4 +211,4 @@ const SModalButtonRight = styled.a`
   }
 `;
 
-export default IssueDetail;
+export default IssueModal;

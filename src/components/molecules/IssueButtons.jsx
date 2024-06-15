@@ -1,26 +1,30 @@
 import styled from 'styled-components';
 import Button from '../atoms/button/Button';
-import { useState } from 'react';
-import IssueModal from './IssueModal';
-
+import IssueModal from '../organisms/IssueModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal, closeModal } from '../../redux/issueSlice';
 
 export const IssueButtons = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isModalOpen = useSelector((state) => state.issues.isModalOpen);
+  const dispatch = useDispatch();
 
-const openModal = () => {
-  setIsModalOpen(true);
-};
+  const handleOpenModal = () => {
+    dispatch(openModal());
+  };
 
-const closeModal = () => {
-  setIsModalOpen(false);
-  
-};
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
 
   return (
     <SContainer>
-      <Button variant={'primary'} onClick={openModal}>New</Button>
-      <Button variant={'danger'} onClick={() => console.log('Delete button clicked')} >Delete</Button>
-      <IssueModal isOpen={isModalOpen} onClose={closeModal} />
+      <Button variant={'primary'} onClick={handleOpenModal}>
+        New
+      </Button>
+      <Button variant={'danger'} onClick={() => console.log('Delete button clicked')}>
+        Delete
+      </Button>
+      <IssueModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </SContainer>
   );
 };
