@@ -40,7 +40,9 @@ export const issueSlice = createSlice({
     issueList: issues,
   },
   reducers: {
-    addIssue: (state, action) => {state.issueList.push(action.payload);},
+    addIssue: (state, action) => {
+      state.issueList.push(action.payload);
+    },
     updateIssue: (state, action) => {
       const index = state.issueList.findIndex((issue) => issue.id === action.payload.id);
       if (index !== -1) {
