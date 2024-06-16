@@ -24,7 +24,7 @@ export const IssueButtons = () => {
       <Button variant={'danger'} onClick={() => console.log('Delete button clicked')}>
         Delete
       </Button>
-      <IssueModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <IssueModal isOpen={isModalOpen} onClose={handleCloseModal} modalType={'new'} />
     </SContainer>
   );
 };

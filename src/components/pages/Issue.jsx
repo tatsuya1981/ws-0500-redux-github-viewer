@@ -36,10 +36,10 @@ const SIssueContainer = styled.div`
 `;
 
 const SIssueWrapper = styled.div`
-  padding: 16px;
+  padding: 16px 16px;
 `;
 
 const SIssueGroup = styled.div`
-  padding: 16px;
+  padding: 16px 16px;
   margin-top: 16px;
 `;

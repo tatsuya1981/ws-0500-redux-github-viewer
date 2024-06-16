@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { addIssue } from '../../redux/issueSlice';
+import { addIssue, updateIssue } from '../../redux/issueSlice';
+import Select from 'react-select';
 
 const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
   const [title, setTitle] = useState(modalType === 'edit' ? issue.title : '');
@@ -12,6 +13,13 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
   const today = new Date()
     .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
     .replaceAll('/', '-');
+  const statusOptions = [
+    { value: 'Open', label: 'Open' },
+    { value: 'Close', label: 'Close' },
+  ];
+  const [selectedStatus, setSelectedStatus] = useState(
+    modalType === 'edit' ? { value: issue.status, label: issue.status } : null,
+  );
 
   const handleSubmit = () => {
     if (!title) {
@@ -23,16 +31,23 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
     }
 
     const newIssue = {
-      id: Date.now(),
       title,
-      status: 'open',
-      user: user.userName,
+      status: modalType === 'edit' ? selectedStatus.value : 'Open',
       description,
-      creationDate: today,
       updateDate: today,
     };
 
-    dispatch(addIssue(newIssue));
+    if (modalType === 'edit') {
+      newIssue.id = issue.id;
+      newIssue.creationDate = issue.creationDate;
+      dispatch(updateIssue(newIssue));
+    } else {
+      newIssue.id = Date.now();
+      newIssue.user = user.userName;
+      newIssue.creationDate = today;
+      dispatch(addIssue(newIssue));
+    }
+
     onClose();
     setTitle('');
     setDescription('');
@@ -75,6 +90,20 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
                 ></STextarea>
               </STitleInputWrapper>
             </STitleWrapper>
+            {modalType === 'edit' && (
+              <SSelectTitleWrapper>
+                <STitleLabel>ステータス</STitleLabel>
+                <Select
+                  value={selectedStatus}
+                  onChange={(selectedOption) => setSelectedStatus(selectedOption)}
+                  options={statusOptions}
+                  isSearchable={false}
+                  styles={selectStyles}
+                  components={{ IndicatorSeparator: () => null }}
+                  menuPortalTarget={document.body}
+                />
+              </SSelectTitleWrapper>
+            )}
           </STitleContainer>
           <SModalError> {errorMessage && <SModalErrorMessage>{errorMessage}</SModalErrorMessage>} </SModalError>
           <SModalButtonWrapper>
@@ -104,6 +133,11 @@ const SModalContent = styled.div`
   padding: 20px;
   margin: auto;
   width: 60%;
+  @media (max-width: 576px) {
+    width: 100%;
+    right: 0px !important;
+    left: 0px !important;
+  }
 `;
 
 const SModalContainer = styled.div`
@@ -210,5 +244,32 @@ const SModalButtonRight = styled.a`
     color: rgb(8, 11, 27);
   }
 `;
+
+const SSelectTitleWrapper = styled.div`
+  padding: 0px;
+  margin: 0px;
+`;
+
+const selectStyles = {
+  control: (provided) => ({
+    ...provided,
+    borderRadius: '6px',
+    border: '1px solid rgb(225, 228, 232)',
+    boxShadow: 'none',
+    '&:hover': {
+      border: '1px solid rgb(225, 228, 232)',
+    },
+    width: 'auto',
+    maxWidth: '100px',
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? 'rgb(225, 228, 232)' : 'white',
+    color: 'black',
+    '&:hover': {
+      backgroundColor: 'rgb(245, 245, 245)',
+    },
+  }),
+};
 
 export default IssueModal;
