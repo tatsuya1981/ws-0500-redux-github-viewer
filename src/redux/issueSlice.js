@@ -8,7 +8,7 @@ const issues = [
   {
     id: 1,
     title: 'A bug in Top Page',
-    status: 'open',
+    status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     creationDate: today,
@@ -17,7 +17,7 @@ const issues = [
   {
     id: 2,
     title: 'A problem of performance in Top Page',
-    status: 'open',
+    status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     creationDate: today,
@@ -26,7 +26,7 @@ const issues = [
   {
     id: 3,
     title: 'fix layout',
-    status: 'open',
+    status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     creationDate: today,

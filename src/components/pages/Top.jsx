@@ -1,17 +1,25 @@
 import styled from 'styled-components';
 import { HeaderTag } from '../molecules/HeaderTag';
 import { Issue } from './Issue';
+import { PullRequest } from './PullRequest';
+import { useState } from 'react';
 
 export const Top = () => {
+  const [activeTab, setActiveTab] = useState('issue');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
-        <STopIssue>
-          <STopIssueContainer>
-            <STopIssueWrapper>
-              <HeaderTag />
-              <Issue />
-            </STopIssueWrapper>
-          </STopIssueContainer>
-        </STopIssue>
+    <STopIssue>
+      <STopIssueContainer>
+        <STopIssueWrapper>
+          <HeaderTag activeTab={activeTab} onTabClick={handleTabClick} />
+        </STopIssueWrapper>
+        <SContentWrapper>{activeTab === 'issue' ? <Issue /> : <PullRequest />}</SContentWrapper>
+      </STopIssueContainer>
+    </STopIssue>
   );
 };
 
@@ -28,4 +36,8 @@ const STopIssueContainer = styled.div`
 const STopIssueWrapper = styled.div`
   padding: 16px;
   margin-top: 16px;
+`;
+
+const SContentWrapper = styled.div`
+  padding: 16px;
 `;
