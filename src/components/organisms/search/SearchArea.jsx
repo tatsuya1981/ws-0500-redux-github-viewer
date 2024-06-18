@@ -3,7 +3,7 @@ import { IssueTitle } from '../../atoms/IssueTitle';
 import { SearchIssues } from '../../atoms/SearchIssue';
 import { IssueButtons } from '../../molecules/IssueButtons';
 
-export const SearchArea = ({ onChange }) => {
+export const SearchArea = ({ onChange, selectedItems }) => {
   const handleSearch = (keyword) => {
     onChange(keyword);
   };
@@ -12,7 +12,7 @@ export const SearchArea = ({ onChange }) => {
     <SSearchArea>
       <IssueTitle />
       <SearchIssues onSearch={handleSearch} />
-      <IssueButtons />
+      <IssueButtons selectedItems={selectedItems} />
     </SSearchArea>
   );
 };

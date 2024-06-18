@@ -51,7 +51,7 @@ export const issueSlice = createSlice({
       }
     },
     deleteIssue: (state, action) => {
-      state.issueList = state.issueList.filter((issue) => issue.id !== action.payload.id);
+      state.issueList = state.issueList.filter((issue) => issue.id !== action.payload);
     },
     openModal: (state) => {
       state.isModalOpen = true;
