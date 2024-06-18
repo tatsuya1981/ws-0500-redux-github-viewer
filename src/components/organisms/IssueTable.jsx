@@ -4,8 +4,7 @@ import IssueModal from './IssueModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal } from '../../redux/issueSlice';
 
-export const IssueTable = ({ issues = [] }) => {
-  const [selectedItems, setSelectedItems] = useState([]);
+export const IssueTable = ({ issues = [], selectedItems, setSelectedItems }) => {
   const [selectedIssue, setSelectedIssue] = useState(null);
   const dispatch = useDispatch();
   const allSelected = issues.length > 0 && selectedItems.length === issues.length;
@@ -86,6 +85,7 @@ export const IssueTable = ({ issues = [] }) => {
 
 const SIssueTableWrapper = styled.div`
   overflow: scroll;
+  width: auto;
 `;
 
 const SIssueTable = styled.table`

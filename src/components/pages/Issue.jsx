@@ -7,7 +7,7 @@ import { useMemo, useState } from 'react';
 export const Issue = () => {
   const issueList = useSelector((state) => state.issues.issueList);
   const [keyword, setKeyword] = useState('');
-
+  const [selectedItems, setSelectedItems] = useState([]);
   const filteredIssues = useMemo(() => {
     return issueList.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
   }, [issueList, keyword]);
@@ -21,8 +21,8 @@ export const Issue = () => {
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-            <SearchArea onChange={onChange} />
-            <IssueTable issues={filteredIssues} />
+            <SearchArea onChange={onChange} selectedItems={selectedItems} />
+            <IssueTable issues={filteredIssues} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
           </SIssueGroup>
         </SIssueWrapper>
       </SIssueContainer>

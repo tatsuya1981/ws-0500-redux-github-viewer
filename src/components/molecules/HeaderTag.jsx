@@ -3,10 +3,13 @@ import styled from 'styled-components';
 export const HeaderTag = ({ activeTab, onTabClick }) => {
   return (
     <SHeaderTagWrapper>
-      <SHeaderTagLeft active={activeTab === 'issue'} onClick={() => onTabClick('issue')}>
+      <SHeaderTagLeft active={activeTab === 'issue' ? 'true' : undefined} onClick={() => onTabClick('issue')}>
         <SHeaderTagSpan>Issue</SHeaderTagSpan>
       </SHeaderTagLeft>
-      <SHeaderTagRight active={activeTab === 'pullRequest'} onClick={() => onTabClick('pullRequest')}>
+      <SHeaderTagRight
+        active={activeTab === 'pullRequest' ? 'true' : undefined}
+        onClick={() => onTabClick('pullRequest')}
+      >
         <SHeaderTagSpan>Pull Request</SHeaderTagSpan>
       </SHeaderTagRight>
     </SHeaderTagWrapper>
