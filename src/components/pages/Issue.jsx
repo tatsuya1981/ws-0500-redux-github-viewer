@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SearchArea } from '../organisms/search/SearchArea';
+import { Search } from '../organisms/search/Index';
 import { IssueTable } from '../organisms/IssueTable';
 import { useSelector } from 'react-redux';
 import { useMemo, useState } from 'react';
@@ -20,7 +20,7 @@ export const Issue = () => {
     <SIssueContainer>
       <SIssueWrapper>
         <SIssueGroup>
-          <SearchArea onChange={onChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+          <Search onChange={onChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
           <IssueTable issues={filteredIssues} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
         </SIssueGroup>
       </SIssueWrapper>

@@ -70,8 +70,8 @@ export const IssueTable = ({ issues = [], selectedItems, setSelectedItems }) => 
               <SIssueBodyTableTitle>{issue.title}</SIssueBodyTableTitle>
               <SIssueBodyTableTitle>{issue.status}</SIssueBodyTableTitle>
               <SIssueBodyTableTitle>{issue.user}</SIssueBodyTableTitle>
-              <SIssueBodyTableTitle>{issue.creationDate}</SIssueBodyTableTitle>
-              <SIssueBodyTableTitle>{issue.updateDate}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.createdAt}</SIssueBodyTableTitle>
+              <SIssueBodyTableTitle>{issue.updatedAt}</SIssueBodyTableTitle>
             </SIssueTableRow>
           ))}
         </tbody>

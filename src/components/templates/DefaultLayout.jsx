@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../organisms/layout/Header';
+import { Layout } from '../organisms/layout/Index';
 
 export const DefaultLayout = () => {
   return (
     <>
-      <Header />
+      <Layout />
       <Outlet />
     </>
   );

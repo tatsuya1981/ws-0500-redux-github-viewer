@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { addIssue, updateIssue } from '../../redux/issueSlice';
 import Select from 'react-select';
-import Button from '../atoms/button/Button';
+import Button from '../atoms/button/Index';
 
 const today = new Date()
   .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
   .replaceAll('/', '-');
 
 const IssueModal = ({ isOpen, onClose, issue = {} }) => {
-  const [title, setTitle] = useState(issue.id ? issue.title : '');
-  const [description, setDescription] = useState(issue.id ? issue.description : '');
+  const isEdit = issue.id;
+  const [title, setTitle] = useState(isEdit ? issue.title : '');
+  const [description, setDescription] = useState(isEdit ? issue.description : '');
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.data);
@@ -19,7 +20,7 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
     { value: 'Open', label: 'Open' },
     { value: 'Close', label: 'Close' },
   ];
-  const [selectedStatus, setSelectedStatus] = useState(issue.id ? { value: issue.status, label: issue.status } : null);
+  const [selectedStatus, setSelectedStatus] = useState(isEdit ? { value: issue.status, label: issue.status } : null);
 
   const handleSubmit = () => {
     if (!title) {
@@ -32,19 +33,19 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
 
     const newIssue = {
       title,
-      status: issue.id ? selectedStatus.value : 'Open',
+      status: isEdit ? selectedStatus.value : 'Open',
       description,
-      updateDate: today,
+      updatedAt: today,
     };
 
-    if (issue.id) {
-      newIssue.id = issue.id;
-      newIssue.creationDate = issue.creationDate;
+    if (isEdit) {
+      newIssue.id = isEdit;
+      newIssue.createdAt = issue.createdAt;
       dispatch(updateIssue(newIssue));
     } else {
       newIssue.id = Date.now();
       newIssue.user = user.userName;
-      newIssue.creationDate = today;
+      newIssue.createdAt = today;
       dispatch(addIssue(newIssue));
     }
 
@@ -67,7 +68,7 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
     <SModalOverLay>
       <SModalContent>
         <SModalContainer>
-          <SModalTitle>{issue.id ? 'Issueを編集' : 'Issueを追加'}</SModalTitle>
+          <SModalTitle>{isEdit ? 'Issueを編集' : 'Issueを追加'}</SModalTitle>
           <STitleContainer>
             <STitleWrapper>
               <STitleLabel>タイトル</STitleLabel>
@@ -90,7 +91,7 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
                 ></STextarea>
               </STitleInputWrapper>
             </STitleWrapper>
-            {issue.id && (
+            {isEdit && (
               <SSelectTitleWrapper>
                 <STitleLabel>ステータス</STitleLabel>
                 <Select
@@ -108,7 +109,7 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
           <SModalError> {errorMessage && <SModalErrorMessage>{errorMessage}</SModalErrorMessage>} </SModalError>
           <SModalButtonWrapper>
             <Button variant={'create'} onClick={handleSubmit}>
-              {issue.id ? '更新' : '作成'}
+              {isEdit ? '更新' : '作成'}
             </Button>
             <Button variant={'close'} onClick={modalClose}>
               閉じる

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../atoms/button/Button';
+import Button from '../atoms/button/Index';
 import IssueModal from '../organisms/IssueModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteIssue } from '../../redux/issueSlice';
@@ -36,6 +36,5 @@ export const IssueButtons = ({ selectedItems, setSelectedItems }) => {
 };
 
 const SContainer = styled.div`
-  font-family: 'Lato', sans-serif;
   display: flex;
 `;

@@ -11,8 +11,8 @@ const issues = [
     status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    creationDate: today,
-    updateDate: today,
+    createdAt: today,
+    updatedAt: today,
   },
   {
     id: 2,
@@ -20,8 +20,8 @@ const issues = [
     status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    creationDate: today,
-    updateDate: today,
+    createdAt: today,
+    updatedAt: today,
   },
   {
     id: 3,
@@ -29,8 +29,8 @@ const issues = [
     status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    creationDate: today,
-    updateDate: today,
+    createdAt: today,
+    updatedAt: today,
   },
 ];
 
