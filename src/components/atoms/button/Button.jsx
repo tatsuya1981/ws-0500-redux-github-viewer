@@ -35,6 +35,26 @@ const SVariants = {
       background-color: rgb(160, 28, 4);
     }
   `,
+  create: styled(SBase)`
+    width: auto;
+    font-size: 1.1rem;
+    background: rgb(66, 195, 96);
+    border-bottom: 2px solid rgb(40, 167, 69);
+    text-decoration: none;
+    &:hover {
+      background: rgb(31, 97, 46);
+      border-bottom: 2px solid rgb(37, 116, 55);
+    }
+  `,
+  close: styled(SBase)`
+    width: auto;
+    color: rgb(3, 102, 214);
+    font-size: 1.1rem;
+    text-decoration: none;
+    &:hover {
+      color: rgb(8, 11, 27);
+    }
+  `,
 };
 
 export default Button;
