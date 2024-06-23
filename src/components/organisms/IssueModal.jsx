@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import { addIssue, updateIssue } from '../../redux/issueSlice';
 import Select from 'react-select';
 
-const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
-  const [title, setTitle] = useState(modalType === 'edit' ? issue.title : '');
-  const [description, setDescription] = useState(modalType === 'edit' ? issue.description : '');
+const IssueModal = ({ isOpen, onClose, issue = {} }) => {
+  console.log(issue);
+  const [title, setTitle] = useState(issue.id ? issue.title : '');
+  const [description, setDescription] = useState(issue.id ? issue.description : '');
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.userStatus[0]);
+  const user = useSelector((state) => state.user.userStatus);
   const today = new Date()
     .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
     .replaceAll('/', '-');
@@ -17,9 +18,7 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
     { value: 'Open', label: 'Open' },
     { value: 'Close', label: 'Close' },
   ];
-  const [selectedStatus, setSelectedStatus] = useState(
-    modalType === 'edit' ? { value: issue.status, label: issue.status } : null,
-  );
+  const [selectedStatus, setSelectedStatus] = useState(issue.id ? { value: issue.status, label: issue.status } : null);
 
   const handleSubmit = () => {
     if (!title) {
@@ -32,12 +31,12 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
 
     const newIssue = {
       title,
-      status: modalType === 'edit' ? selectedStatus.value : 'Open',
+      status: issue.id ? selectedStatus.value : 'Open',
       description,
       updateDate: today,
     };
 
-    if (modalType === 'edit') {
+    if (issue.id) {
       newIssue.id = issue.id;
       newIssue.creationDate = issue.creationDate;
       dispatch(updateIssue(newIssue));
@@ -67,7 +66,7 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
     <SModalOverLay>
       <SModalContent>
         <SModalContainer>
-          <SModalTitle>{modalType === 'edit' ? 'Issueを編集' : 'Issueを追加'}</SModalTitle>
+          <SModalTitle>{issue.id ? 'Issueを編集' : 'Issueを追加'}</SModalTitle>
           <STitleContainer>
             <STitleWrapper>
               <STitleLabel>タイトル</STitleLabel>
@@ -90,7 +89,7 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
                 ></STextarea>
               </STitleInputWrapper>
             </STitleWrapper>
-            {modalType === 'edit' && (
+            {issue.id && (
               <SSelectTitleWrapper>
                 <STitleLabel>ステータス</STitleLabel>
                 <Select
@@ -107,7 +106,7 @@ const IssueModal = ({ isOpen, onClose, issue, modalType }) => {
           </STitleContainer>
           <SModalError> {errorMessage && <SModalErrorMessage>{errorMessage}</SModalErrorMessage>} </SModalError>
           <SModalButtonWrapper>
-            <SModalButtonLeft onClick={handleSubmit}>{modalType === 'edit' ? '更新' : '作成'}</SModalButtonLeft>
+            <SModalButtonLeft onClick={handleSubmit}>{issue.id ? '更新' : '作成'}</SModalButtonLeft>
             <SModalButtonRight onClick={modalClose}>閉じる</SModalButtonRight>
           </SModalButtonWrapper>
         </SModalContainer>

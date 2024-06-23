@@ -64,15 +64,14 @@ font-size: 1.2rem;
 position: relative;
 cursor: pointer;
 width: 30px;
-height: 25px;
 `;
 
 const SBurgerLine = styled.div`
   background-color: #fff;
   height: 3px;
-  width: 100%;
+  width: 66%;
   display: block;
-  margin: 6px auto;
+  margin: 3px auto;
   transition: all 0.3s ease-in-out;
   transform: ${(props) => (props.open ? props.transform : 'none')}
   opacity: ${(props) => (props.open && props.opacity === 0 ? 0 : 1)}
@@ -80,14 +79,15 @@ const SBurgerLine = styled.div`
 
 const SBurgerWrapper = styled.div`
   position: absolute;
-  top: 64px;
-  right: 16px;
+  top: 40px;
+  right: 5px;
   width: 200px;
   border-radius: 2px;
   padding: 8px 0px;
   background-color: #fff;
   display: ${(props) => (props.open ? 'block' : 'none')};
   box-shadow: rgba(51, 51, 51, 0.15) 1px 1px 4px 1px;
+  text-align: left;
 `;
 
 const SBurgerMenu = styled.ul`

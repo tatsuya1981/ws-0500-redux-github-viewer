@@ -38,7 +38,6 @@ export const issueSlice = createSlice({
   name: 'issues',
   initialState: {
     issueList: issues,
-    isModalOpen: false,
   },
   reducers: {
     addIssue: (state, action) => {
@@ -53,14 +52,8 @@ export const issueSlice = createSlice({
     deleteIssue: (state, action) => {
       state.issueList = state.issueList.filter((issue) => issue.id !== action.payload);
     },
-    openModal: (state) => {
-      state.isModalOpen = true;
-    },
-    closeModal: (state) => {
-      state.isModalOpen = false;
-    },
   },
 });
 
-export const { addIssue, updateIssue, deleteIssue, openModal, closeModal } = issueSlice.actions;
+export const { addIssue, updateIssue, deleteIssue } = issueSlice.actions;
 export default issueSlice.reducer;

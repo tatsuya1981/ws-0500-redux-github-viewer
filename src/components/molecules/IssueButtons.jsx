@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import Button from '../atoms/button/Button';
 import IssueModal from '../organisms/IssueModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, closeModal, deleteIssue } from '../../redux/issueSlice';
+import { deleteIssue } from '../../redux/issueSlice';
+import { closeModal, openModal } from '../../redux/modalSlice';
 
-export const IssueButtons = ({ selectedItems }) => {
-  const isModalOpen = useSelector((state) => state.issues.isModalOpen);
+export const IssueButtons = ({ selectedItems, setSelectedItems }) => {
+  const isModalOpen = useSelector((state) => state.modal.isModalOpen);
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
@@ -18,6 +19,7 @@ export const IssueButtons = ({ selectedItems }) => {
 
   const handleDeleteModal = () => {
     selectedItems.forEach((id) => dispatch(deleteIssue(id)));
+    setSelectedItems([]);
   };
 
   return (
