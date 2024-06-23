@@ -9,7 +9,7 @@ const defaultUser = {
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    userStatus: defaultUser,
+    data: defaultUser,
   },
   reducers: {
     addUser: (state) => {

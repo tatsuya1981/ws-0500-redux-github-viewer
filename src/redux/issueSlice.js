@@ -37,20 +37,20 @@ const issues = [
 export const issueSlice = createSlice({
   name: 'issues',
   initialState: {
-    issueList: issues,
+    list: issues,
   },
   reducers: {
     addIssue: (state, action) => {
-      state.issueList.push(action.payload);
+      state.list.push(action.payload);
     },
     updateIssue: (state, action) => {
-      const index = state.issueList.findIndex((issue) => issue.id === action.payload.id);
+      const index = state.list.findIndex((issue) => issue.id === action.payload.id);
       if (index !== -1) {
-        state.issueList[index] = { ...state.issueList[index], ...action.payload };
+        state.list[index] = { ...state.list[index], ...action.payload };
       }
     },
     deleteIssue: (state, action) => {
-      state.issueList = state.issueList.filter((issue) => issue.id !== action.payload);
+      state.list = state.list.filter((issue) => issue.id !== action.payload);
     },
   },
 });

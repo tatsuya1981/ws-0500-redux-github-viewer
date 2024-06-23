@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useMemo, useState } from 'react';
 
 export const Issue = () => {
-  const issueList = useSelector((state) => state.issues.issueList);
+  const issueList = useSelector((state) => state.issues.list);
   const [keyword, setKeyword] = useState('');
   const [selectedItems, setSelectedItems] = useState([]);
   const filteredIssues = useMemo(() => {
@@ -17,16 +17,14 @@ export const Issue = () => {
   };
 
   return (
-    <div>
-      <SIssueContainer>
-        <SIssueWrapper>
-          <SIssueGroup>
-            <SearchArea onChange={onChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
-            <IssueTable issues={filteredIssues} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
-          </SIssueGroup>
-        </SIssueWrapper>
-      </SIssueContainer>
-    </div>
+    <SIssueContainer>
+      <SIssueWrapper>
+        <SIssueGroup>
+          <SearchArea onChange={onChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+          <IssueTable issues={filteredIssues} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+        </SIssueGroup>
+      </SIssueWrapper>
+    </SIssueContainer>
   );
 };
 const SIssueContainer = styled.div`

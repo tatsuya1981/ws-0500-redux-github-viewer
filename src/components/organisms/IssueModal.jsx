@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { addIssue, updateIssue } from '../../redux/issueSlice';
 import Select from 'react-select';
+import Button from '../atoms/button/Button';
+
+const today = new Date()
+  .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
+  .replaceAll('/', '-');
 
 const IssueModal = ({ isOpen, onClose, issue = {} }) => {
-  console.log(issue);
   const [title, setTitle] = useState(issue.id ? issue.title : '');
   const [description, setDescription] = useState(issue.id ? issue.description : '');
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.userStatus);
-  const today = new Date()
-    .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    .replaceAll('/', '-');
+  const user = useSelector((state) => state.user.data);
   const statusOptions = [
     { value: 'Open', label: 'Open' },
     { value: 'Close', label: 'Close' },
@@ -106,8 +107,12 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
           </STitleContainer>
           <SModalError> {errorMessage && <SModalErrorMessage>{errorMessage}</SModalErrorMessage>} </SModalError>
           <SModalButtonWrapper>
-            <SModalButtonLeft onClick={handleSubmit}>{issue.id ? '更新' : '作成'}</SModalButtonLeft>
-            <SModalButtonRight onClick={modalClose}>閉じる</SModalButtonRight>
+            <Button variant={'create'} onClick={handleSubmit}>
+              {issue.id ? '更新' : '作成'}
+            </Button>
+            <Button variant={'close'} onClick={modalClose}>
+              閉じる
+            </Button>
           </SModalButtonWrapper>
         </SModalContainer>
       </SModalContent>
@@ -205,43 +210,6 @@ const SModalButtonWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 8px;
-`;
-
-const SModalButtonLeft = styled.a`
-  width: auto;
-  cursor: pointer;
-  display: block;
-  text-align: center;
-  padding: 4px 16px;
-  margin: 4px;
-  min-width: 100px;
-  border-radius: 6px;
-  color: white;
-  font-size: 1.1rem;
-  background: rgb(66, 195, 96);
-  border-bottom: 2px solid rgb(40, 167, 69);
-  text-decoration: none;
-  &:hover {
-    background: rgb(31, 97, 46);
-    border-bottom: 2px solid rgb(37, 116, 55);
-  }
-`;
-
-const SModalButtonRight = styled.a`
-  width: auto;
-  cursor: pointer;
-  display: block;
-  text-align: center;
-  padding: 4px 16px;
-  margin: 4px;
-  min-width: 100px;
-  border-radius: 6px;
-  color: rgb(3, 102, 214);
-  font-size: 1.1rem;
-  text-decoration: none;
-  &:hover {
-    color: rgb(8, 11, 27);
-  }
 `;
 
 const SSelectTitleWrapper = styled.div`
