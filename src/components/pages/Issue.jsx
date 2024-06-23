@@ -21,7 +21,7 @@ export const Issue = () => {
       <SIssueContainer>
         <SIssueWrapper>
           <SIssueGroup>
-            <SearchArea onChange={onChange} selectedItems={selectedItems} />
+            <SearchArea onChange={onChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
             <IssueTable issues={filteredIssues} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
           </SIssueGroup>
         </SIssueWrapper>

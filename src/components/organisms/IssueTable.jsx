@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import IssueModal from './IssueModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal, openModal } from '../../redux/issueSlice';
+import { closeModal, openModal } from '../../redux/modalSlice';
 
 export const IssueTable = ({ issues = [], selectedItems, setSelectedItems }) => {
   const [selectedIssue, setSelectedIssue] = useState(null);
   const dispatch = useDispatch();
   const allSelected = issues.length > 0 && selectedItems.length === issues.length;
-  const isModalOpen = useSelector((state) => state.issues.isModalOpen);
+  const isModalOpen = useSelector((state) => state.modal.isModalOpen);
 
   const handleIssueClick = (issue) => {
     setSelectedIssue(issue);
@@ -76,9 +76,7 @@ export const IssueTable = ({ issues = [], selectedItems, setSelectedItems }) => 
           ))}
         </tbody>
       </SIssueTable>
-      {selectedIssue && (
-        <IssueModal issue={selectedIssue} onClose={handleCloseModal} modalType={'edit'} isOpen={isModalOpen} />
-      )}
+      {selectedIssue && <IssueModal issue={selectedIssue} onClose={handleCloseModal} isOpen={isModalOpen} />}
     </SIssueTableWrapper>
   );
 };
