@@ -7,6 +7,6 @@ export const store = configureStore({
   reducer: {
     issues: issueReducer,
     user: userReducer,
-    modal: modalReducer,
+    isOpen: modalReducer,
   },
 });

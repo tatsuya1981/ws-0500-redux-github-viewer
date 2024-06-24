@@ -8,7 +8,7 @@ export const IssueTable = ({ issues = [], selectedItems, setSelectedItems }) => 
   const [selectedIssue, setSelectedIssue] = useState(null);
   const dispatch = useDispatch();
   const allSelected = issues.length > 0 && selectedItems.length === issues.length;
-  const isModalOpen = useSelector((state) => state.modal.isModalOpen);
+  const isModalOpen = useSelector((state) => state.isOpen.isModalOpen);
 
   const handleIssueClick = (issue) => {
     setSelectedIssue(issue);

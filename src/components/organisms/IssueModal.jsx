@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { addIssue, updateIssue } from '../../redux/issueSlice';
+import { addIssue, updateIssue, updateToday } from '../../redux/issueSlice';
 import Select from 'react-select';
 import Button from '../atoms/button/Index';
 
-const today = new Date()
-  .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
-  .replaceAll('/', '-');
+const statusOptions = [
+  { value: 'Open', label: 'Open' },
+  { value: 'Close', label: 'Close' },
+];
 
 const IssueModal = ({ isOpen, onClose, issue = {} }) => {
   const isEdit = issue.id;
@@ -16,10 +17,7 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.data);
-  const statusOptions = [
-    { value: 'Open', label: 'Open' },
-    { value: 'Close', label: 'Close' },
-  ];
+  const today = useSelector((state) => state.issues.today);
   const [selectedStatus, setSelectedStatus] = useState(isEdit ? { value: issue.status, label: issue.status } : null);
 
   const handleSubmit = () => {
@@ -30,6 +28,7 @@ const IssueModal = ({ isOpen, onClose, issue = {} }) => {
       setErrormessage('説明文を入力して下さい');
       return;
     }
+    dispatch(updateToday());
 
     const newIssue = {
       title,
