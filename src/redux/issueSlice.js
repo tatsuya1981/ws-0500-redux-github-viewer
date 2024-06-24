@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const today = new Date()
-  .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
-  .replaceAll('/', '-');
+const today = () => {
+  return new Date()
+    .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    .replaceAll('/', '-');
+};
 
 const issues = [
   {
@@ -11,8 +13,8 @@ const issues = [
     status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    createdAt: today,
-    updatedAt: today,
+    createdAt: today(),
+    updatedAt: today(),
   },
   {
     id: 2,
@@ -20,8 +22,8 @@ const issues = [
     status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    createdAt: today,
-    updatedAt: today,
+    createdAt: today(),
+    updatedAt: today(),
   },
   {
     id: 3,
@@ -29,8 +31,8 @@ const issues = [
     status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    createdAt: today,
-    updatedAt: today,
+    createdAt: today(),
+    updatedAt: today(),
   },
 ];
 
@@ -38,6 +40,7 @@ export const issueSlice = createSlice({
   name: 'issues',
   initialState: {
     list: issues,
+    today: today(),
   },
   reducers: {
     addIssue: (state, action) => {
@@ -52,8 +55,11 @@ export const issueSlice = createSlice({
     deleteIssue: (state, action) => {
       state.list = state.list.filter((issue) => issue.id !== action.payload);
     },
+    updateToday: (state) => {
+      state.today = today();
+    },
   },
 });
 
-export const { addIssue, updateIssue, deleteIssue } = issueSlice.actions;
+export const { addIssue, updateIssue, deleteIssue, updateToday } = issueSlice.actions;
 export default issueSlice.reducer;

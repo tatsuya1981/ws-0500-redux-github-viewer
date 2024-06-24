@@ -6,7 +6,7 @@ import { deleteIssue } from '../../redux/issueSlice';
 import { closeModal, openModal } from '../../redux/modalSlice';
 
 export const IssueButtons = ({ selectedItems, setSelectedItems }) => {
-  const isModalOpen = useSelector((state) => state.modal.isModalOpen);
+  const isModalOpen = useSelector((state) => state.isOpen.isModalOpen);
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
