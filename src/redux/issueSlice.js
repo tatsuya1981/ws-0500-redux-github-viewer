@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const today = () => {
-  return new Date()
-    .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    .replaceAll('/', '-');
-};
+import { today } from '../date';
 
 const issues = [
   {
@@ -40,7 +35,6 @@ export const issueSlice = createSlice({
   name: 'issues',
   initialState: {
     list: issues,
-    today: today(),
   },
   reducers: {
     addIssue: (state, action) => {
@@ -55,11 +49,8 @@ export const issueSlice = createSlice({
     deleteIssue: (state, action) => {
       state.list = state.list.filter((issue) => issue.id !== action.payload);
     },
-    updateToday: (state) => {
-      state.today = today();
-    },
   },
 });
 
-export const { addIssue, updateIssue, deleteIssue, updateToday } = issueSlice.actions;
+export const { addIssue, updateIssue, deleteIssue } = issueSlice.actions;
 export default issueSlice.reducer;
