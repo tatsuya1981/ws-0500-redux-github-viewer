@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input } from './input/Input';
+import { Input } from './input/Index';
 
 export const SearchIssues = ({ onSearch }) => {
   const handleSearch = (event) => {

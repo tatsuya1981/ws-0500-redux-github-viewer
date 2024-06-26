@@ -1,56 +1,53 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const today = new Date()
-  .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
-  .replaceAll('/', '-');
+import { today } from '../date';
 
 const issues = [
   {
     id: 1,
     title: 'A bug in Top Page',
-    status: 'open',
+    status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    creationDate: today,
-    updateDate: today,
+    createdAt: today(),
+    updatedAt: today(),
   },
   {
     id: 2,
     title: 'A problem of performance in Top Page',
-    status: 'open',
+    status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    creationDate: today,
-    updateDate: today,
+    createdAt: today(),
+    updatedAt: today(),
   },
   {
     id: 3,
     title: 'fix layout',
-    status: 'open',
+    status: 'Open',
     user: '',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    creationDate: today,
-    updateDate: today,
+    createdAt: today(),
+    updatedAt: today(),
   },
 ];
 
 export const issueSlice = createSlice({
   name: 'issues',
   initialState: {
-    issueList: issues,
+    list: issues,
   },
   reducers: {
     addIssue: (state, action) => {
-      state.issueList.push(action.payload);
+      state.list.push(action.payload);
     },
     updateIssue: (state, action) => {
-      const index = state.issueList.findIndex((issue) => issue.id === action.payload.id);
+      const index = state.list.findIndex((issue) => issue.id === action.payload.id);
       if (index !== -1) {
-        state.issueList[index] = { ...state.issueList[index], ...action.payload };
+        state.list[index] = { ...state.list[index], ...action.payload };
       }
     },
     deleteIssue: (state, action) => {
-      state.issueList = state.issueList.filter((issue) => issue.id !== action.payload.id);
+      state.list = state.list.filter((issue) => issue.id !== action.payload);
     },
   },
 });

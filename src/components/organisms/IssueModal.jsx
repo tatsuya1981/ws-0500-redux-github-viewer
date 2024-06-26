@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addIssue } from '../../redux/issueSlice';
 import styled from 'styled-components';
+import { addIssue, updateIssue } from '../../redux/issueSlice';
+import Select from 'react-select';
+import Button from '../atoms/button/Index';
+import { today } from '../../date';
 
-const IssueDetail = ({ issue, onClose }) => {
-  const [title, setTitle] = useState(issue.title);
-  const [description, setDescription] = useState(issue.description);
+const statusOptions = [
+  { value: 'Open', label: 'Open' },
+  { value: 'Close', label: 'Close' },
+];
+
+const IssueModal = ({ isOpen, onClose, issue = {} }) => {
+  const isEdit = issue.id;
+  const [title, setTitle] = useState(isEdit ? issue.title : '');
+  const [description, setDescription] = useState(isEdit ? issue.description : '');
   const [errorMessage, setErrormessage] = useState('');
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.userStatus[0]);
-  const today = new Date()
-    .toLocaleDateString('ja-JP', { day: '2-digit', month: '2-digit', year: 'numeric' })
-    .replaceAll('/', '-');
+  const user = useSelector((state) => state.user.data);
+  const [selectedStatus, setSelectedStatus] = useState(isEdit ? { value: issue.status, label: issue.status } : null);
 
   const handleSubmit = () => {
     if (!title) {
@@ -23,16 +30,23 @@ const IssueDetail = ({ issue, onClose }) => {
     }
 
     const newIssue = {
-      id: Date.now(),
       title,
-      status: 'open',
-      user: user.userName,
+      status: isEdit ? selectedStatus.value : 'Open',
       description,
-      creationDate: today,
-      updateDate: today,
+      updatedAt: today(),
     };
 
-    dispatch(addIssue(newIssue));
+    if (isEdit) {
+      newIssue.id = isEdit;
+      newIssue.createdAt = issue.createdAt;
+      dispatch(updateIssue(newIssue));
+    } else {
+      newIssue.id = Date.now();
+      newIssue.user = user.userName;
+      newIssue.createdAt = today();
+      dispatch(addIssue(newIssue));
+    }
+
     onClose();
     setTitle('');
     setDescription('');
@@ -46,11 +60,13 @@ const IssueDetail = ({ issue, onClose }) => {
     setErrormessage('');
   };
 
+  if (!isOpen) return null;
+
   return (
     <SModalOverLay>
       <SModalContent>
         <SModalContainer>
-          <SModalTitle>Issueを追加</SModalTitle>
+          <SModalTitle>{isEdit ? 'Issueを編集' : 'Issueを追加'}</SModalTitle>
           <STitleContainer>
             <STitleWrapper>
               <STitleLabel>タイトル</STitleLabel>
@@ -73,11 +89,29 @@ const IssueDetail = ({ issue, onClose }) => {
                 ></STextarea>
               </STitleInputWrapper>
             </STitleWrapper>
+            {isEdit && (
+              <SSelectTitleWrapper>
+                <STitleLabel>ステータス</STitleLabel>
+                <Select
+                  value={selectedStatus}
+                  onChange={(selectedOption) => setSelectedStatus(selectedOption)}
+                  options={statusOptions}
+                  isSearchable={false}
+                  styles={selectStyles}
+                  components={{ IndicatorSeparator: () => null }}
+                  menuPortalTarget={document.body}
+                />
+              </SSelectTitleWrapper>
+            )}
           </STitleContainer>
           <SModalError> {errorMessage && <SModalErrorMessage>{errorMessage}</SModalErrorMessage>} </SModalError>
           <SModalButtonWrapper>
-            <SModalButtonLeft onClick={handleSubmit}>作成</SModalButtonLeft>
-            <SModalButtonRight onClick={modalClose}>閉じる</SModalButtonRight>
+            <Button variant={'create'} onClick={handleSubmit}>
+              {isEdit ? '更新' : '作成'}
+            </Button>
+            <Button variant={'close'} onClick={modalClose}>
+              閉じる
+            </Button>
           </SModalButtonWrapper>
         </SModalContainer>
       </SModalContent>
@@ -102,6 +136,11 @@ const SModalContent = styled.div`
   padding: 20px;
   margin: auto;
   width: 60%;
+  @media (max-width: 576px) {
+    width: 100%;
+    right: 0px !important;
+    left: 0px !important;
+  }
 `;
 
 const SModalContainer = styled.div`
@@ -172,41 +211,31 @@ const SModalButtonWrapper = styled.div`
   padding: 8px;
 `;
 
-const SModalButtonLeft = styled.a`
-  width: auto;
-  cursor: pointer;
-  display: block;
-  text-align: center;
-  padding: 4px 16px;
-  margin: 4px;
-  min-width: 100px;
-  border-radius: 6px;
-  color: white;
-  font-size: 1.1rem;
-  background: rgb(66, 195, 96);
-  border-bottom: 2px solid rgb(40, 167, 69);
-  text-decoration: none;
-  &:hover {
-    background: rgb(31, 97, 46);
-    border-bottom: 2px solid rgb(37, 116, 55);
-  }
+const SSelectTitleWrapper = styled.div`
+  padding: 0px;
+  margin: 0px;
 `;
 
-const SModalButtonRight = styled.a`
-  width: auto;
-  cursor: pointer;
-  display: block;
-  text-align: center;
-  padding: 4px 16px;
-  margin: 4px;
-  min-width: 100px;
-  border-radius: 6px;
-  color: rgb(3, 102, 214);
-  font-size: 1.1rem;
-  text-decoration: none;
-  &:hover {
-    color: rgb(8, 11, 27);
-  }
-`;
+const selectStyles = {
+  control: (provided) => ({
+    ...provided,
+    borderRadius: '6px',
+    border: '1px solid rgb(225, 228, 232)',
+    boxShadow: 'none',
+    '&:hover': {
+      border: '1px solid rgb(225, 228, 232)',
+    },
+    width: 'auto',
+    maxWidth: '100px',
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? 'rgb(225, 228, 232)' : 'white',
+    color: 'black',
+    '&:hover': {
+      backgroundColor: 'rgb(245, 245, 245)',
+    },
+  }),
+};
 
-export default IssueDetail;
+export default IssueModal;

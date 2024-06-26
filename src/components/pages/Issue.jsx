@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { SearchArea } from '../organisms/search/SearchArea';
+import { Search } from '../organisms/search/Index';
 import { IssueTable } from '../organisms/IssueTable';
 import { useSelector } from 'react-redux';
 import { useMemo, useState } from 'react';
 
 export const Issue = () => {
-  const issueList = useSelector((state) => state.issues.issueList);
+  const issueList = useSelector((state) => state.issues.list);
   const [keyword, setKeyword] = useState('');
-
+  const [selectedItems, setSelectedItems] = useState([]);
   const filteredIssues = useMemo(() => {
     return issueList.filter((issue) => issue.title.toLowerCase().includes(keyword.toLowerCase()));
   }, [issueList, keyword]);
@@ -17,16 +17,14 @@ export const Issue = () => {
   };
 
   return (
-    <div>
-      <SIssueContainer>
-        <SIssueWrapper>
-          <SIssueGroup>
-            <SearchArea onChange={onChange} />
-            <IssueTable issues={filteredIssues} />
-          </SIssueGroup>
-        </SIssueWrapper>
-      </SIssueContainer>
-    </div>
+    <SIssueContainer>
+      <SIssueWrapper>
+        <SIssueGroup>
+          <Search onChange={onChange} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+          <IssueTable issues={filteredIssues} selectedItems={selectedItems} setSelectedItems={setSelectedItems} />
+        </SIssueGroup>
+      </SIssueWrapper>
+    </SIssueContainer>
   );
 };
 const SIssueContainer = styled.div`
@@ -36,10 +34,10 @@ const SIssueContainer = styled.div`
 `;
 
 const SIssueWrapper = styled.div`
-  padding: 16px;
+  padding: 16px 16px;
 `;
 
 const SIssueGroup = styled.div`
-  padding: 16px;
+  padding: 16px 16px;
   margin-top: 16px;
 `;

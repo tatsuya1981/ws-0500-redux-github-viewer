@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 export const Profile = () => {
-  const user = useSelector((state) => state.user.userStatus[0]);
+  const user = useSelector((state) => state.user.data);
   return (
     <SUserContainer>
       <SUserWrapper>

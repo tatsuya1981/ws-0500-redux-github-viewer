@@ -3,7 +3,7 @@ import { HeaderTitle } from '../../atoms/HeaderTitle';
 import { HeaderTitles } from '../../molecules/HeaderTitles';
 import { MenuDrawer } from '../MenuDrawer';
 
-export const Header = () => {
+export const Layout = () => {
   return (
     <SHeader>
       <HeaderTitle />
